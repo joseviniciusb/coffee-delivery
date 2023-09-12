@@ -1,6 +1,8 @@
 export const defaultTheme = {
   white: "#F3F2F2",
 
+  "base-subtitle": "#403937",
+
   "purple-light": "#EBE5F9",
   "purple-dark": "#4B2995",
 
