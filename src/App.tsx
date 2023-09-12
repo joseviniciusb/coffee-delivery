@@ -22,8 +22,10 @@ function App() {
 
           <Card>
             <img src={TradicionalExpressoIcon} />
-            <p>Tradicional</p>
-            <p>Coffe Name</p>
+
+            <h3>Tradicional</h3>
+
+            <h2>Coffe Name</h2>
             <p>This is a Coffe description</p>
             <div>
               <p>R$ 9,90</p>

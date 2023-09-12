@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto';
 }
 
 :focus {
@@ -13,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body{
+
 background-color: ${(props) => props.theme["white"]} ;
 color: ${(props) => props.theme["gray-700"]};
 overflow: auto;

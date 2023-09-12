@@ -75,4 +75,13 @@ export const Card = styled.div`
     width: 120px;
     margin-top: -15px;
   }
+
+  h3 {
+    background-color: ${(props) => props.theme['yellow-light']};
+    color: ${(props) => props.theme['yellow-dark']};
+    padding: 4px 2px 4px 2px;
+    border-radius: 10%;
+}
+
+
 `;

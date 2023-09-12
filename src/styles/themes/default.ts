@@ -8,7 +8,7 @@ export const defaultTheme = {
   "purple-dark": "#4B2995",
 
   "yellow-light": "#F1E9C9",
-  "yellow-dark": "C47F17",
+  "yellow-dark": "#C47F17",
 
   "gray-100": "#E1E1E6",
   "gray-300": "#C4C4CC",
