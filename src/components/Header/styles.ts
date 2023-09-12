@@ -5,12 +5,14 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-around;
   height: 6.5rem;
-  gap: 500px;
+  gap: 800px;
+  margin-top: -50px;
+  margin-bottom: 5rem;
 
   nav {
     display: flex;
     color: ${(props) => props.theme["purple-dark"]};
-    gap: 0.5rem;
+    gap: 0.7rem;
   }
 `;
 
