@@ -4,7 +4,6 @@ export const IntroContainer = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 90rem;
-  
 
   section {
     display: flex;
@@ -52,5 +51,28 @@ export const ItemsContainer = styled.div`
 export const ImageContainer = styled.div`
   img {
     width: 30rem;
+  }
+`;
+
+export const CoffeListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 1120px;
+  max-height: 1360px;
+`;
+
+export const Card = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 256px;
+  height: 310px;
+
+  background-color: ${(props) => props.theme["base-card"]} ;
+
+  img {
+    width: 120px;
+    margin-top: -15px;
   }
 `;
