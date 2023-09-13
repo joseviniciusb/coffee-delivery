@@ -134,17 +134,17 @@ function App() {
         <Intro />
         <h1>Nossos cafés</h1>
         <CoffeListContainer>
-          {coffes.map(() => {
+          {coffes.map((card) => {
             return (
               <Card>
-                <img src={TradicionalExpressoIcon} />
-                <h3>Tradicional</h3>
-                <h2>Café Tradicional</h2>
+                <img src={card.image} />
+                <h3>{card.tag}</h3>
+                <h2>{card.name}</h2>
                 <span>
-                  O tradicional café feito com água quente e grãos moídos
+                 {card.description}
                 </span>
                 <div>
-                  <p>R$ 9,90</p>
+                  <p>R$ {card.price}</p>
                   <nav>
                     <CounterContainer>
                       <p>-</p>
