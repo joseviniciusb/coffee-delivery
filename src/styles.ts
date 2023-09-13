@@ -20,8 +20,9 @@ export const TitleContainer = styled.div`
 
   h1 {
     font-family: "Baloo 2", cursive;
-    color: ${(props) => props.theme["gray-700"]};
+    color: ${(props) => props.theme["base-title"]};
     font-size: 2rem;
+   
   }
 
   p {
@@ -37,7 +38,7 @@ export const ItemsContainer = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   font-family: "Roboto";
-  color: ${(props) => props.theme["gray-500"]};
+  color: ${(props) => props.theme["base-text"]};
   font-size: 16px;
 
   div {
@@ -81,6 +82,10 @@ export const Card = styled.div`
     color: ${(props) => props.theme['yellow-dark']};
     padding: 4px 2px 4px 2px;
     border-radius: 10%;
+}
+
+h2 {
+  color: ${(props) => props.theme['base-subtitle']};
 }
 
 
