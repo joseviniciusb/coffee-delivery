@@ -15,8 +15,7 @@ export const GlobalStyle = createGlobalStyle`
 
 body{
 
-background-color: ${(props) => props.theme["white"]} ;
-color: ${(props) => props.theme["gray-700"]};
+background-color: ${(props) => props.theme["background"]} ;
 overflow: auto;
 
 }
