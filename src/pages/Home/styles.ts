@@ -22,7 +22,8 @@ export const TitleContainer = styled.div`
   h1 {
     font-family: "Baloo 2", cursive;
     color: ${(props) => props.theme["base-title"]};
-    font-size: 2rem;
+    font-size: 3rem;
+    line-height: 130%;
   }
 
   p {
