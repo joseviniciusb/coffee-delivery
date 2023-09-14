@@ -47,7 +47,7 @@ export const Home = () => {
           <ItemsContainer>
             {items.map((item) => {
               return (
-                <div>
+                <div key={item.description}>
                   <img src={item.icon} />
                   <span>{item.description}</span>
                 </div>

@@ -12,6 +12,10 @@ export const CardContainer = styled.div`
 
   background-color: ${(props) => props.theme["base-card"]};
 
+  span {
+    color: ${(props) => props.theme["base-label"]};
+  }
+
   div {
     display: flex;
     width: 13rem;
