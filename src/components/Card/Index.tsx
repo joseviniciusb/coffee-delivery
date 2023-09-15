@@ -140,34 +140,43 @@ export const Card = () => {
     currency: "BRL",
   });
 
-  const [counters, setCounters] = useState(Array(coffees.length).fill(0));
   const [shoppingCartItems, setShoppingCartItems] = useState<
-    { coffee: Coffee; count: number }[]
+    { coffeeId: number; count: number }[]
   >([]);
 
-  const handleCounter = (index: number, increment: number) => {
-    const newCounters = [...counters];
-    newCounters[index] += increment;
-
-    newCounters[index] < 0
-      ? newCounters[(index = 0)]
-      : setCounters(newCounters);
-  };
-
-  const handleAddProduct = (index: number) => {
-    const updatedCartItems = [...shoppingCartItems];
-
-    const existingIndex = updatedCartItems.findIndex(
-      (item) => item.coffee.id === coffees[index].id
+  function itemCartQuantity(id: number) {
+    const itemIndex = shoppingCartItems.findIndex(
+      (item) => item.coffeeId === id
     );
 
-    if (counters[index] <= 0) return;
+    if (itemIndex === -1) return 0;
 
-    if (existingIndex !== -1) {
-      updatedCartItems[existingIndex].count += 1;
-    } else {
-      updatedCartItems.push({ coffee: coffees[index], count: counters[index] });
+    return shoppingCartItems[itemIndex].count;
+  }
+
+  const handleProduct = (id: number, increment: number) => {
+    const updatedCartItems = [...shoppingCartItems];
+
+    const itemIndex = updatedCartItems.findIndex(
+      (item) => item.coffeeId === id
+    );
+
+    if (itemIndex < 0 && increment === -1) return;
+
+    if (
+      increment === -1 &&
+      itemIndex >= 0 &&
+      updatedCartItems[itemIndex].count === 1
+    ) {
+      updatedCartItems.splice(itemIndex, 1);
+      setShoppingCartItems(updatedCartItems);
+      return;
     }
+
+    if (itemIndex >= 0)
+      updatedCartItems[itemIndex].count =
+        updatedCartItems[itemIndex].count + increment;
+    else updatedCartItems.push({ coffeeId: id, count: 1 });
 
     setShoppingCartItems(updatedCartItems);
   };
@@ -203,9 +212,9 @@ export const Card = () => {
                 <p>{BRL.format(card.price)}</p>
                 <nav>
                   <CounterContainer>
-                    <p onClick={() => handleCounter(index, -1)}>-</p>
-                    <span>{counters[index]}</span>
-                    <p onClick={() => handleCounter(index, 1)}>+</p>
+                    <p onClick={() => handleProduct(card.id, -1)}>-</p>
+                    <span>{itemCartQuantity(card.id)}</span>
+                    <p onClick={() => handleProduct(card.id, 1)}>+</p>
                   </CounterContainer>
                   <div>
                     <ShoppingCart
@@ -213,7 +222,7 @@ export const Card = () => {
                       color="white"
                       size={19}
                       cursor="pointer"
-                      onClick={() => handleAddProduct(index)}
+                      onClick={() => {}}
                     />
                   </div>
                 </nav>
