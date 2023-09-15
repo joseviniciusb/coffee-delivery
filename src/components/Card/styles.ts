@@ -18,7 +18,6 @@ export const CardContainer = styled.div`
 
   div {
     display: flex;
-    width: 13rem;
     height: 2.375rem;
     gap: 1rem;
     align-items: center;
@@ -33,17 +32,19 @@ export const CardContainer = styled.div`
     nav {
       display: flex;
       gap: 0.5rem;
-      width: 8.5rem;
       height: 2.375rem;
 
       div {
         background-color: ${(props) => props.theme["base-button"]};
         justify-content: center;
+        width: 5rem;
       }
 
       div:last-child {
         background: ${(props) => props.theme["purple-dark"]};
         border-radius: 6px;
+        width: 2rem;
+     
       }
     }
   }
