@@ -6,8 +6,9 @@ import { useState } from "react";
 import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
 
 export const Card = () => {
-  const coffes = [
+  const coffees = [
     {
+      id: 1,
       image: TradicionalExpressoIcon,
       tag: "Tradicional",
       name: "Café Tradicional",
@@ -15,6 +16,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 2,
       image: TradicionalExpressoIcon,
       tag: "Tradicional",
       name: "Expresso Americano",
@@ -22,6 +24,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 3,
       image: TradicionalExpressoIcon,
       tag: "Tradicional",
       name: "Expresso Cremoso",
@@ -29,6 +32,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 4,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Gelado" },
       name: "Expresso Gelado",
@@ -36,6 +40,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 5,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Com leite" },
       name: "Café com Leite",
@@ -43,6 +48,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 6,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Com leite" },
       name: "Latte",
@@ -51,6 +57,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 7,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Com leite" },
       name: "Capuccino",
@@ -59,6 +66,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 8,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Com leite" },
       name: "Macchiato",
@@ -67,6 +75,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 9,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Tradicional", tag2: "Com leite" },
       name: "Mocaccino",
@@ -74,6 +83,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 10,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Especial", tag2: "Com leite" },
       name: "Chocolate Quente",
@@ -82,6 +92,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 11,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Especial", tag2: "Alcoólico" },
       name: "Cubano",
@@ -90,6 +101,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 12,
       image: TradicionalExpressoIcon,
       tag: "Especial",
       name: "Havaiano",
@@ -97,6 +109,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 13,
       image: TradicionalExpressoIcon,
       tag: "Especial",
       name: "Árabe",
@@ -104,6 +117,7 @@ export const Card = () => {
       price: 9.9,
     },
     {
+      id: 14,
       image: TradicionalExpressoIcon,
       tag: { tag1: "Especial", tag2: "Alcoólico" },
       name: "Irlandês",
@@ -111,13 +125,16 @@ export const Card = () => {
       price: 9.9,
     },
   ];
+  
+  console.log(coffees);
+  
 
   let BRL = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
 
-  const [counters, setCounters] = useState(Array(coffes.length).fill(0));
+  const [counters, setCounters] = useState(Array(coffees.length).fill(0));
 
   const handleCounter = (index: number, increment: number) => {
     const newCounters = [...counters];
@@ -146,7 +163,7 @@ export const Card = () => {
     <>
       <h1>Nossos cafés</h1>
       <CoffeListContainer>
-        {coffes.map((card, index) => {
+        {coffees.map((card, index) => {
           return (
             <CardContainer key={index}>
               <img src={card.image} />
