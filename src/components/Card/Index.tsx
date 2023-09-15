@@ -6,7 +6,16 @@ import { useState } from "react";
 import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
 
 export const Card = () => {
-  const coffees = [
+  interface Coffee {
+    id: number;
+    image: string;
+    tag: string | { tag1: string; tag2: string };
+    name: string;
+    description: string;
+    price: number;
+  }
+
+  const coffees: Coffee[] = [
     {
       id: 1,
       image: TradicionalExpressoIcon,
@@ -125,9 +134,6 @@ export const Card = () => {
       price: 9.9,
     },
   ];
-  
-  console.log(coffees);
-  
 
   let BRL = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -135,6 +141,9 @@ export const Card = () => {
   });
 
   const [counters, setCounters] = useState(Array(coffees.length).fill(0));
+  const [shoppingCartItems, setShoppingCartItems] = useState<
+    { coffee: Coffee; count: number }[]
+  >([]);
 
   const handleCounter = (index: number, increment: number) => {
     const newCounters = [...counters];
@@ -144,6 +153,26 @@ export const Card = () => {
       ? newCounters[(index = 0)]
       : setCounters(newCounters);
   };
+
+  const handleAddProduct = (index: number) => {
+    const updatedCartItems = [...shoppingCartItems];
+
+    const existingIndex = updatedCartItems.findIndex(
+      (item) => item.coffee.id === coffees[index].id
+    );
+
+    if (counters[index] <= 0) return;
+
+    if (existingIndex !== -1) {
+      updatedCartItems[existingIndex].count += 1;
+    } else {
+      updatedCartItems.push({ coffee: coffees[index], count: counters[index] });
+    }
+
+    setShoppingCartItems(updatedCartItems);
+  };
+
+  console.log("shoppingCartItems", shoppingCartItems);
 
   type TagType = string | { tag1: string; tag2: string };
 
@@ -184,6 +213,7 @@ export const Card = () => {
                       color="white"
                       size={19}
                       cursor="pointer"
+                      onClick={() => handleAddProduct(index)}
                     />
                   </div>
                 </nav>
