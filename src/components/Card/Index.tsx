@@ -161,7 +161,14 @@ export const Card = () => {
                     <span>{counters[index]}</span>
                     <p onClick={() => handleCounter(index, 1)}>+</p>
                   </CounterContainer>
-                  <ShoppingCart size={38} cursor="pointer" />
+                  <div>
+                    <ShoppingCart
+                      weight="fill"
+                      color="white"
+                      size={19}
+                      cursor="pointer"
+                    />
+                  </div>
                 </nav>
               </div>
             </CardContainer>
