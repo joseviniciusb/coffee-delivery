@@ -69,11 +69,11 @@ export const CounterContainer = styled.div`
   width: 4.5rem;
   padding: 10px;
   margin-left: 1.5rem;
+  user-select: none;
 
   p {
     font-size: 1.5rem;
     cursor: pointer;
-
     color: ${(props) => props.theme["brand-purple"]};
   }
 
