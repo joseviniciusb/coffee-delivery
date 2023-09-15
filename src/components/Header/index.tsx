@@ -19,6 +19,10 @@ export const Header = () => {
         </LocationContainer>
         <ShoppingCartIconContainer>
           <img src={shoppingCart}></img>
+          <div>
+          <span>{2}</span>
+          </div>
+       
         </ShoppingCartIconContainer>
       </nav>
     </HeaderContainer>
