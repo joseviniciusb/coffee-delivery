@@ -44,7 +44,6 @@ export const CardContainer = styled.div`
         background: ${(props) => props.theme["purple-dark"]};
         border-radius: 6px;
         width: 2rem;
-     
       }
     }
   }
@@ -79,7 +78,7 @@ export const CounterContainer = styled.div`
   p {
     font-size: 1.5rem;
     cursor: pointer;
-    color: ${(props) => props.theme["brand-purple"]};
+    color: ${(props) => props.theme["purple"]};
   }
 
   span {
