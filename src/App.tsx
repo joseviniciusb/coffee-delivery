@@ -5,13 +5,16 @@ import { ThemeProvider } from "styled-components";
 
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
+import { AppProvider } from "./contexts/ProductsContext";
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <LayoutContainer>
-        <Router/>
+          <AppProvider>
+            <Router />
+          </AppProvider>
         </LayoutContainer>
         <GlobalStyle />
       </BrowserRouter>

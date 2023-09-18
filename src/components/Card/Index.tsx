@@ -1,10 +1,11 @@
 import { ShoppingCart } from "phosphor-react";
 import { CoffeListContainer } from "../../pages/Home/styles";
 
-import TradicionalExpressoIcon from "../../assets/coffes/TradicionalExpressoIcon.svg";
-import { useState } from "react";
 import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
 import { NavLink } from "react-router-dom";
+import { useAppContext } from "../../contexts/ProductsContext";
+
+import TradicionalExpressoIcon from "../../assets/coffes/TradicionalExpressoIcon.svg";
 
 export const Card = () => {
   interface Coffee {
@@ -141,9 +142,9 @@ export const Card = () => {
     currency: "BRL",
   });
 
-  const [shoppingCartItems, setShoppingCartItems] = useState<
-    { coffeeId: number; count: number }[]
-  >([]);
+  const { shoppingCartItems, setShoppingCartItems } = useAppContext();
+
+  console.log("aaaasdas", shoppingCartItems);
 
   function itemCartQuantity(id: number) {
     const itemIndex = shoppingCartItems.findIndex(
