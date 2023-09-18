@@ -3,18 +3,18 @@ import { LayoutContainer } from "./styles/layouts/DefaultLayout/styles";
 import { defaultTheme } from "./styles/themes/default";
 import { ThemeProvider } from "styled-components";
 
-import { Home } from "./pages/Home/Index";
-import { Header } from "./components/Header";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <LayoutContainer>
-        <Header />
-        <Home />
-      </LayoutContainer>
-
-      <GlobalStyle />
+      <BrowserRouter>
+        <LayoutContainer>
+        <Router/>
+        </LayoutContainer>
+        <GlobalStyle />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
