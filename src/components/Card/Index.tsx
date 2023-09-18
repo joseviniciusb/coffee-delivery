@@ -144,8 +144,6 @@ export const Card = () => {
 
   const { shoppingCartItems, setShoppingCartItems } = useAppContext();
 
-  console.log("aaaasdas", shoppingCartItems);
-
   function itemCartQuantity(id: number) {
     const itemIndex = shoppingCartItems.findIndex(
       (item) => item.coffeeId === id

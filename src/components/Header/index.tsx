@@ -7,8 +7,22 @@ import {
 import Logo from "../../assets/Logo.svg";
 import Location from "../../assets/Location.svg";
 import shoppingCart from "../../assets/shoppingCart.svg";
+import { useAppContext } from "../../contexts/ProductsContext";
 
 export const Header = () => {
+  const { shoppingCartItems } = useAppContext();
+
+  const arrayTotalItems = shoppingCartItems.map((coffee) => {
+    return coffee.count;
+  });
+
+  const initialValue = 0;
+
+  const totalItemsInCart = arrayTotalItems.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+  
   return (
     <HeaderContainer>
       <img src={Logo} />
@@ -20,9 +34,8 @@ export const Header = () => {
         <ShoppingCartIconContainer>
           <img src={shoppingCart}></img>
           <div>
-          <span>{2}</span>
+            <span>{totalItemsInCart}</span>
           </div>
-       
         </ShoppingCartIconContainer>
       </nav>
     </HeaderContainer>
