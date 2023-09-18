@@ -4,6 +4,7 @@ import { CoffeListContainer } from "../../pages/Home/styles";
 import TradicionalExpressoIcon from "../../assets/coffes/TradicionalExpressoIcon.svg";
 import { useState } from "react";
 import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
+import { NavLink } from "react-router-dom";
 
 export const Card = () => {
   interface Coffee {
@@ -217,13 +218,14 @@ export const Card = () => {
                     <p onClick={() => handleProduct(card.id, 1)}>+</p>
                   </CounterContainer>
                   <div>
-                    <ShoppingCart
-                      weight="fill"
-                      color="white"
-                      size={19}
-                      cursor="pointer"
-                      onClick={() => {}}
-                    />
+                    <NavLink to="/checkout" title="Checkout">
+                      <ShoppingCart
+                        weight="fill"
+                        color="white"
+                        size={19}
+                        cursor="pointer"
+                      />
+                    </NavLink>
                   </div>
                 </nav>
               </div>
