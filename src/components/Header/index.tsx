@@ -12,17 +12,14 @@ import { useAppContext } from "../../contexts/ProductsContext";
 export const Header = () => {
   const { shoppingCartItems } = useAppContext();
 
-  const arrayTotalItems = shoppingCartItems.map((coffee) => {
-    return coffee.count;
-  });
-
+  const arrayTotalItems = shoppingCartItems.map((coffee) => coffee.count);
   const initialValue = 0;
 
   const totalItemsInCart = arrayTotalItems.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     initialValue
   );
-  
+
   return (
     <HeaderContainer>
       <img src={Logo} />
