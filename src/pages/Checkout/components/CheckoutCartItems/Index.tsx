@@ -26,6 +26,11 @@ interface CartItem {
 export const CheckoutCartItems = () => {
   const { shoppingCartItems } = useAppContext();
 
+  let BRL = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
     return shoppingCartItems.map(({ coffeeId, count }) => {
       const coffee = coffees.find((c) => c.id === coffeeId);
@@ -42,101 +47,36 @@ export const CheckoutCartItems = () => {
 
   return (
     <>
-      <ProductContainer>
-        <ProductIcon src={TradicionalExpressoIcon} />
+      {filteredCoffees.map((coffee) => {
+        return (
+          <>
+            <ProductContainer>
+              <ProductIcon src={TradicionalExpressoIcon} />
 
-        <InfoProductsContainer>
-          <ProductName>Expresso Tradicional</ProductName>
-          <ActionsContainer>
-            <CounterContainer>
-              <DecrementButton>-</DecrementButton>
-              <Counter>10</Counter>
-              <IncrementButton>+</IncrementButton>
-            </CounterContainer>
+              <InfoProductsContainer>
+                <ProductName>{coffee.name}</ProductName>
+                <ActionsContainer>
+                  <CounterContainer>
+                    <DecrementButton>-</DecrementButton>
+                    <Counter>{coffee.count}</Counter>
+                    <IncrementButton>+</IncrementButton>
+                  </CounterContainer>
 
-            <RemoveButton>
-              <Trash size={18} color="#4B2995" />
-              Remover
-            </RemoveButton>
-          </ActionsContainer>
-        </InfoProductsContainer>
+                  <RemoveButton>
+                    <Trash size={18} color="#4B2995" />
+                    Remover
+                  </RemoveButton>
+                </ActionsContainer>
+              </InfoProductsContainer>
 
-        <ProductPrice>R$ 9,90</ProductPrice>
-      </ProductContainer>
-
-      <hr></hr>
-
-      <ProductContainer>
-        <ProductIcon src={TradicionalExpressoIcon} />
-
-        <InfoProductsContainer>
-          <ProductName>Expresso Tradicional</ProductName>
-          <ActionsContainer>
-            <CounterContainer>
-              <DecrementButton>-</DecrementButton>
-              <Counter>10</Counter>
-              <IncrementButton>+</IncrementButton>
-            </CounterContainer>
-
-            <RemoveButton>
-              <Trash size={18} color="#4B2995" />
-              Remover
-            </RemoveButton>
-          </ActionsContainer>
-        </InfoProductsContainer>
-
-        <ProductPrice>R$ 9,90</ProductPrice>
-      </ProductContainer>
-
-      <hr></hr>
-
-      <ProductContainer>
-        <ProductIcon src={TradicionalExpressoIcon} />
-
-        <InfoProductsContainer>
-          <ProductName>Expresso Tradicional</ProductName>
-          <ActionsContainer>
-            <CounterContainer>
-              <DecrementButton>-</DecrementButton>
-              <Counter>10</Counter>
-              <IncrementButton>+</IncrementButton>
-            </CounterContainer>
-
-            <RemoveButton>
-              <Trash size={18} color="#4B2995" />
-              Remover
-            </RemoveButton>
-          </ActionsContainer>
-        </InfoProductsContainer>
-
-        <ProductPrice>R$ 9,90</ProductPrice>
-      </ProductContainer>
-
-      <hr></hr>
-
-      <ProductContainer>
-        <ProductIcon src={TradicionalExpressoIcon} />
-
-        <InfoProductsContainer>
-          <ProductName>Expresso Tradicional</ProductName>
-          <ActionsContainer>
-            <CounterContainer>
-              <DecrementButton>-</DecrementButton>
-              <Counter>10</Counter>
-              <IncrementButton>+</IncrementButton>
-            </CounterContainer>
-
-            <RemoveButton>
-              <Trash size={18} color="#4B2995" />
-              Remover
-            </RemoveButton>
-          </ActionsContainer>
-        </InfoProductsContainer>
-
-        <ProductPrice>R$ 9,90</ProductPrice>
-      </ProductContainer>
-
-      <hr></hr>
+              <ProductPrice>
+                {coffee.price ? BRL.format(coffee.price) : ""}
+              </ProductPrice>
+            </ProductContainer>
+            <hr></hr>
+          </>
+        );
+      })}
     </>
   );
 };
