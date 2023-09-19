@@ -5,7 +5,10 @@ export const CheckoutContainer = styled.div`
   flex-direction: column;
 `;
 
-export const AddressContainer = styled.div``;
+export const AddressContainer = styled.div`
+display: flex;
+gap: 1.5rem;
+`;
 
 export const TitleContainer = styled.div`
   display: flex;
@@ -18,6 +21,8 @@ export const CheckoutTitle = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const CartItemsContainer = styled.div`
+export const SelectedCoffeesContainer = styled.div`
   background-color: ${(props) => props.theme["base-card"]};
+  padding: 25px;
+  border-radius: 6px 44px 6px 44px;
 `;
