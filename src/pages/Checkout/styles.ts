@@ -67,38 +67,24 @@ export const ConfirmOrderButton = styled.button`
   cursor: pointer;
 `;
 
-export const PaymentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  background-color: ${(props) => props.theme["base-card"]};
-
-  padding: 40px;
-`;
-
 export const MethodsOfPaymentContainer = styled.div`
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between;
 `;
 
-export const MethodOfPayment = styled.div`
+export const StyledMethodOfPayment = styled.div<{ isSelected: boolean }>`
   display: flex;
-  align-items: center;
- 
-  font-size: 14px;
+  gap: 0.5rem;
 
-  width: 180px;
-  height: 51px;
-  padding: 0.5rem 0.7rem;
-
-  background-color: ${(props) => props.theme["base-button"]};
+  padding: 16px;
+  border: 1px solid transparent;
+  background: white;
   cursor: pointer;
 
-  border-radius: 6px;
-
-  svg {
-    color: #8047f8;
-    height: 16px;
-    margin-right: 0.5rem;
-  }
+  ${({ isSelected }) =>
+    isSelected &&
+    `
+    border: 1px solid #8047F8;
+    background: #EBE5F9;
+  `}
 `;
