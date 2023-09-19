@@ -1,16 +1,27 @@
+import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
 import AddressForm from "./components/AddressForm/Index";
 import { SelectedCoffee } from "./components/SelectedCoffee/Index";
 import {
+  AddressAndPaymentContainer,
   AddressContainer,
   AmountContainer,
   AmountText,
   CheckoutContainer,
   CheckoutTitle,
   ConfirmOrderButton,
+  MethodOfPayment,
+  MethodsOfPaymentContainer,
+  PaymentContainer,
   SelectedCoffeesContainer,
   TitleContainer,
   TotalPriceContainer,
 } from "./styles";
+import {
+  InfoContainer,
+  InfoSubTitle,
+  InfoTitle,
+  TextContainer,
+} from "./components/AddressForm/styles";
 
 export const Checkout = () => {
   return (
@@ -21,10 +32,41 @@ export const Checkout = () => {
       </TitleContainer>
 
       <AddressContainer>
-        <AddressForm />
+        <AddressAndPaymentContainer>
+          <AddressForm />
+
+          <PaymentContainer>
+            <InfoContainer>
+              <CurrencyDollarSimple color="#8047F8" size={20} />
+              <TextContainer>
+                <InfoTitle>Pagamento</InfoTitle>
+                <InfoSubTitle>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </InfoSubTitle>
+              </TextContainer>
+            </InfoContainer>
+
+            <MethodsOfPaymentContainer>
+              <MethodOfPayment>
+                <CreditCard size={16} />
+                CARTÃO DE CRÉDITO
+              </MethodOfPayment>
+              <MethodOfPayment>
+                <Bank size={16} />
+                CARTÃO DE DÉBITO
+              </MethodOfPayment>
+              <MethodOfPayment>
+                <Money size={16} />
+                DINHEIRO
+              </MethodOfPayment>
+            </MethodsOfPaymentContainer>
+          </PaymentContainer>
+        </AddressAndPaymentContainer>
+
         <SelectedCoffeesContainer>
           <SelectedCoffee />
-          
+
           <TotalPriceContainer>
             <AmountContainer>
               <AmountText>Total de itens</AmountText>
@@ -43,7 +85,6 @@ export const Checkout = () => {
           </TotalPriceContainer>
 
           <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
-
         </SelectedCoffeesContainer>
       </AddressContainer>
     </CheckoutContainer>

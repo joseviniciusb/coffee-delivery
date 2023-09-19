@@ -4,6 +4,11 @@ export const CheckoutContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+export const AddressAndPaymentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
 
 export const AddressContainer = styled.div`
   display: flex;
@@ -60,4 +65,40 @@ export const ConfirmOrderButton = styled.button`
   color: ${(props) => props.theme["white"]};
 
   cursor: pointer;
+`;
+
+export const PaymentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: ${(props) => props.theme["base-card"]};
+
+  padding: 40px;
+`;
+
+export const MethodsOfPaymentContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+`;
+
+export const MethodOfPayment = styled.div`
+  display: flex;
+  align-items: center;
+ 
+  font-size: 14px;
+
+  width: 180px;
+  height: 51px;
+  padding: 0.5rem 0.7rem;
+
+  background-color: ${(props) => props.theme["base-button"]};
+  cursor: pointer;
+
+  border-radius: 6px;
+
+  svg {
+    color: #8047f8;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
 `;

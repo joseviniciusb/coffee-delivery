@@ -31,7 +31,9 @@ export const AddressInput = styled(BaseInput)`
 `;
 
 export const FormContainer = styled.div`
- 
+  height: 400px;
+  border-radius: 6px;
+
   display: flex;
   align-items: center;
   gap: 3.5rem;
@@ -55,6 +57,10 @@ export const FormContainer = styled.div`
   input:last-child {
     width: 9%;
     text-align: center;
+  }
+
+  input {
+    border-radius: 6px;
   }
 `;
 

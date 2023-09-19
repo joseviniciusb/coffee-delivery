@@ -40,6 +40,78 @@ export const SelectedCoffee = () => {
       </ProductContainer>
 
       <hr></hr>
+
+      <ProductContainer>
+        <ProductIcon src={TradicionalExpressoIcon} />
+
+        <InfoProductsContainer>
+          <ProductName>Expresso Tradicional</ProductName>
+          <ActionsContainer>
+            <CounterContainer>
+              <DecrementButton>-</DecrementButton>
+              <Counter>10</Counter>
+              <IncrementButton>+</IncrementButton>
+            </CounterContainer>
+
+            <RemoveButton>
+              <Trash size={18} color="#4B2995" />
+              Remover
+            </RemoveButton>
+          </ActionsContainer>
+        </InfoProductsContainer>
+
+        <ProductPrice>R$ 9,90</ProductPrice>
+      </ProductContainer>
+
+      <hr></hr>
+
+      <ProductContainer>
+        <ProductIcon src={TradicionalExpressoIcon} />
+
+        <InfoProductsContainer>
+          <ProductName>Expresso Tradicional</ProductName>
+          <ActionsContainer>
+            <CounterContainer>
+              <DecrementButton>-</DecrementButton>
+              <Counter>10</Counter>
+              <IncrementButton>+</IncrementButton>
+            </CounterContainer>
+
+            <RemoveButton>
+              <Trash size={18} color="#4B2995" />
+              Remover
+            </RemoveButton>
+          </ActionsContainer>
+        </InfoProductsContainer>
+
+        <ProductPrice>R$ 9,90</ProductPrice>
+      </ProductContainer>
+
+      <hr></hr>
+
+      <ProductContainer>
+        <ProductIcon src={TradicionalExpressoIcon} />
+
+        <InfoProductsContainer>
+          <ProductName>Expresso Tradicional</ProductName>
+          <ActionsContainer>
+            <CounterContainer>
+              <DecrementButton>-</DecrementButton>
+              <Counter>10</Counter>
+              <IncrementButton>+</IncrementButton>
+            </CounterContainer>
+
+            <RemoveButton>
+              <Trash size={18} color="#4B2995" />
+              Remover
+            </RemoveButton>
+          </ActionsContainer>
+        </InfoProductsContainer>
+
+        <ProductPrice>R$ 9,90</ProductPrice>
+      </ProductContainer>
+
+      <hr></hr>
     </>
   );
 };
