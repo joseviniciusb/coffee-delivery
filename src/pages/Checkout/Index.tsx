@@ -1,6 +1,6 @@
 import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
 import AddressForm from "./components/AddressForm/Index";
-import { SelectedCoffee } from "./components/SelectedCoffee/Index";
+import { CheckoutCartItems } from "./components/CheckoutCartItems/Index";
 import {
   AddressAndPaymentContainer,
   AddressContainer,
@@ -80,7 +80,7 @@ export const Checkout = () => {
         </AddressAndPaymentContainer>
 
         <SelectedCoffeesContainer>
-          <SelectedCoffee />
+          <CheckoutCartItems />
 
           <TotalPriceContainer>
             <AmountContainer>

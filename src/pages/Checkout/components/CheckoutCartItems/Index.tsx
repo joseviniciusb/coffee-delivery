@@ -14,7 +14,7 @@ import {
   RemoveButton,
 } from "./styles";
 
-export const SelectedCoffee = () => {
+export const CheckoutCartItems = () => {
   return (
     <>
       <ProductContainer>
