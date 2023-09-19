@@ -78,7 +78,7 @@ export const StyledMethodOfPayment = styled.div<{ isSelected: boolean }>`
 
   padding: 16px;
   border: 1px solid transparent;
-  background: white;
+  background: ${(props) => props.theme["base-button"]};
   cursor: pointer;
 
   ${({ isSelected }) =>
