@@ -33,10 +33,8 @@ export const AddressInput = styled(BaseInput)`
 export const FormContainer = styled.div`
   height: 400px;
   border-radius: 6px;
-
   display: flex;
   align-items: center;
-  gap: 3.5rem;
   color: ${(props) => props.theme["gray-100"]};
   font-size: 1.125rem;
   font-weight: bold;
