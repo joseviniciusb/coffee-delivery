@@ -10,6 +10,7 @@ import {
   CheckoutTitle,
   ConfirmOrderButton,
   MethodsOfPaymentContainer,
+  PaymentContainer,
   SelectedCoffeesContainer,
   StyledMethodOfPayment,
   TitleContainer,
@@ -40,40 +41,42 @@ export const Checkout = () => {
       <AddressContainer>
         <AddressAndPaymentContainer>
           <AddressForm />
+          <PaymentContainer>
+            <InfoContainer>
+              <CurrencyDollarSimple color="#8047F8" size={20} />
+              <TextContainer>
+                <InfoTitle>Pagamento</InfoTitle>
+                <InfoSubTitle>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </InfoSubTitle>
+              </TextContainer>
+            </InfoContainer>
 
-          <InfoContainer>
-            <CurrencyDollarSimple color="#8047F8" size={20} />
-            <TextContainer>
-              <InfoTitle>Pagamento</InfoTitle>
-              <InfoSubTitle>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </InfoSubTitle>
-            </TextContainer>
-          </InfoContainer>
-
-          <MethodsOfPaymentContainer>
-            <StyledMethodOfPayment
-              isSelected={selectedMethod === "method1"}
-              onClick={() => handleMethodSelect("method1")}
-            >
-              <CreditCard size={16} />
-              CARTÃO DE CRÉDITO
-            </StyledMethodOfPayment>
-            <StyledMethodOfPayment
-              isSelected={selectedMethod === "method2"}
-              onClick={() => handleMethodSelect("method2")}
-            >
-              <Bank size={16} />
-              CARTÃO DE DÉBITO
-            </StyledMethodOfPayment>
-            <StyledMethodOfPayment
-              isSelected={selectedMethod === "method3"}
-              onClick={() => handleMethodSelect("method3")}
-            >
-              <Money size={16} />
-              DINHEIRO
-            </StyledMethodOfPayment>
-          </MethodsOfPaymentContainer>
+            <MethodsOfPaymentContainer>
+              <StyledMethodOfPayment
+                isSelected={selectedMethod === "method1"}
+                onClick={() => handleMethodSelect("method1")}
+              >
+                <CreditCard size={16} />
+                CARTÃO DE CRÉDITO
+              </StyledMethodOfPayment>
+              <StyledMethodOfPayment
+                isSelected={selectedMethod === "method2"}
+                onClick={() => handleMethodSelect("method2")}
+              >
+                <Bank size={16} />
+                CARTÃO DE DÉBITO
+              </StyledMethodOfPayment>
+              <StyledMethodOfPayment
+                isSelected={selectedMethod === "method3"}
+                onClick={() => handleMethodSelect("method3")}
+              >
+                <Money size={16} />
+                DINHEIRO
+              </StyledMethodOfPayment>
+            </MethodsOfPaymentContainer>
+          </PaymentContainer>
         </AddressAndPaymentContainer>
 
         <SelectedCoffeesContainer>
