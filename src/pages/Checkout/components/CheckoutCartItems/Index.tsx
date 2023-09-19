@@ -13,8 +13,33 @@ import {
   ProductPrice,
   RemoveButton,
 } from "./styles";
+import { coffees } from "../../../../components/Coffees/coffees";
+import { useAppContext } from "../../../../contexts/ProductsContext";
+
+import { Coffee } from "../../../../types/Coffee";
+
+interface CartItem {
+  coffeeId: number;
+  count: number;
+}
 
 export const CheckoutCartItems = () => {
+  const { shoppingCartItems } = useAppContext();
+
+  function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
+    return shoppingCartItems.map(({ coffeeId, count }) => {
+      const coffee = coffees.find((c) => c.id === coffeeId);
+      return {
+        ...coffee,
+        count,
+      };
+    });
+  }
+
+  const filteredCoffees = filterCoffeesById(coffees, shoppingCartItems);
+
+  console.log(filteredCoffees);
+
   return (
     <>
       <ProductContainer>
