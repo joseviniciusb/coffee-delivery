@@ -31,7 +31,7 @@ export const AddressInput = styled(BaseInput)`
 `;
 
 export const FormContainer = styled.div`
-  width: 70%;
+ 
   display: flex;
   align-items: center;
   gap: 3.5rem;
@@ -47,14 +47,14 @@ export const FormContainer = styled.div`
   input:nth-child(2) {
     width: 96%;
   }
+
   input:nth-child(4) {
-    width: 55%;
+    width: 52%;
   }
-  input:nth-child(6) {
-    width: 42%;
-  }
+
   input:last-child {
-    width: 10%;
+    width: 9%;
+    text-align: center;
   }
 `;
 
