@@ -2,10 +2,13 @@ import AddressForm from "./components/AddressForm/Index";
 import { SelectedCoffee } from "./components/SelectedCoffee/Index";
 import {
   AddressContainer,
+  AmountContainer,
+  AmountText,
   CheckoutContainer,
   CheckoutTitle,
   SelectedCoffeesContainer,
   TitleContainer,
+  TotalPriceContainer,
 } from "./styles";
 
 export const Checkout = () => {
@@ -20,6 +23,22 @@ export const Checkout = () => {
         <AddressForm />
         <SelectedCoffeesContainer>
           <SelectedCoffee />
+          <TotalPriceContainer>
+            <AmountContainer>
+              <AmountText>Total de itens</AmountText>
+              <AmountText>R$ 29,70</AmountText>
+            </AmountContainer>
+
+            <AmountContainer>
+              <AmountText>Entrega</AmountText>
+              <AmountText>R$ 3,50</AmountText>
+            </AmountContainer>
+
+            <AmountContainer>
+              <AmountText>Total</AmountText>
+              <AmountText>R$ 33,20</AmountText>
+            </AmountContainer>
+          </TotalPriceContainer>
         </SelectedCoffeesContainer>
       </AddressContainer>
     </CheckoutContainer>
