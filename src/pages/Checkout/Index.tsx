@@ -6,6 +6,7 @@ import {
   AmountText,
   CheckoutContainer,
   CheckoutTitle,
+  ConfirmOrderButton,
   SelectedCoffeesContainer,
   TitleContainer,
   TotalPriceContainer,
@@ -23,6 +24,7 @@ export const Checkout = () => {
         <AddressForm />
         <SelectedCoffeesContainer>
           <SelectedCoffee />
+          
           <TotalPriceContainer>
             <AmountContainer>
               <AmountText>Total de itens</AmountText>
@@ -39,6 +41,9 @@ export const Checkout = () => {
               <AmountText>R$ 33,20</AmountText>
             </AmountContainer>
           </TotalPriceContainer>
+
+          <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+
         </SelectedCoffeesContainer>
       </AddressContainer>
     </CheckoutContainer>
