@@ -1,3 +1,4 @@
+import { useTheme } from 'styled-components'
 import { Trash } from "phosphor-react";
 import TradicionalExpressoIcon from "../../../../assets/coffes/TradicionalExpressoIcon.svg";
 import {
@@ -24,7 +25,9 @@ interface CartItem {
 }
 
 export const CheckoutCartItems = () => {
-  const { shoppingCartItems } = useAppContext();
+  const { shoppingCartItems, handleProduct, removeProduct } = useAppContext();
+
+  const theme = useTheme();
 
   let BRL = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -33,7 +36,7 @@ export const CheckoutCartItems = () => {
 
   function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
     return shoppingCartItems.map(({ coffeeId, count }) => {
-      const coffee = coffees.find((c) => c.id === coffeeId);
+      const coffee = coffees.find((c) => c.id === coffeeId) as Coffee;
       return {
         ...coffee,
         count,
@@ -47,7 +50,7 @@ export const CheckoutCartItems = () => {
 
   return (
     <>
-      {filteredCoffees.map((coffee) => {
+      {filteredCoffees.map((coffee, index) => {
         return (
           <>
             <ProductContainer>
@@ -57,20 +60,20 @@ export const CheckoutCartItems = () => {
                 <ProductName>{coffee.name}</ProductName>
                 <ActionsContainer>
                   <CounterContainer>
-                    <DecrementButton>-</DecrementButton>
+                    <DecrementButton onClick={() => handleProduct(coffee.id, -1)}>-</DecrementButton>
                     <Counter>{coffee.count}</Counter>
-                    <IncrementButton>+</IncrementButton>
+                    <IncrementButton onClick={() => handleProduct(coffee.id, 1)}>+</IncrementButton>
                   </CounterContainer>
 
-                  <RemoveButton>
-                    <Trash size={18} color="#4B2995" />
+                  <RemoveButton onClick={() => removeProduct(index)}>
+                    <Trash size={18} color={theme['purple-dark']} />
                     Remover
                   </RemoveButton>
                 </ActionsContainer>
               </InfoProductsContainer>
 
               <ProductPrice>
-                {coffee.price ? BRL.format(coffee.price) : ""}
+                {BRL.format(coffee.price)}
               </ProductPrice>
             </ProductContainer>
             <hr></hr>
