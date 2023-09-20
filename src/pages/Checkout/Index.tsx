@@ -1,6 +1,6 @@
 import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
 import AddressForm from "./components/AddressForm/Index";
-import { CheckoutCartItems } from "./components/CheckoutCartItems/Index";
+import { CheckoutCartItems } from "./components/CheckoutCartItems";
 import {
   AddressAndPaymentContainer,
   AddressContainer,
@@ -9,12 +9,11 @@ import {
   CheckoutContainer,
   CheckoutTitle,
   ConfirmOrderButton,
-  MethodsOfPaymentContainer,
   PaymentContainer,
   SelectedCoffeesContainer,
-  StyledMethodOfPayment,
   TitleContainer,
   TotalPriceContainer,
+  StyledCheckout as S
 } from "./styles";
 import {
   InfoContainer,
@@ -25,9 +24,14 @@ import {
 import { useState } from "react";
 
 export const Checkout = () => {
-  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
 
-  const handleMethodSelect = (method: string) => {
+  enum paymentMethods {
+    CREDIT, DEBIT, MONEY
+  }
+
+  const [selectedMethod, setSelectedMethod] = useState<paymentMethods | null>(null);
+
+  const handleMethodSelect = (method: paymentMethods) => {
     setSelectedMethod(method);
   };
 
@@ -53,29 +57,29 @@ export const Checkout = () => {
               </TextContainer>
             </InfoContainer>
 
-            <MethodsOfPaymentContainer>
-              <StyledMethodOfPayment
-                isSelected={selectedMethod === "method1"}
-                onClick={() => handleMethodSelect("method1")}
+            <S.PaymentMethodContainer>
+              <S.PaymentMethod
+                selected={selectedMethod === paymentMethods.CREDIT}
+                onClick={() => handleMethodSelect(paymentMethods.CREDIT)}
               >
                 <CreditCard size={16} />
                 CARTÃO DE CRÉDITO
-              </StyledMethodOfPayment>
-              <StyledMethodOfPayment
-                isSelected={selectedMethod === "method2"}
-                onClick={() => handleMethodSelect("method2")}
+              </S.PaymentMethod>
+              <S.PaymentMethod
+                selected={selectedMethod === paymentMethods.DEBIT}
+                onClick={() => handleMethodSelect(paymentMethods.DEBIT)}
               >
                 <Bank size={16} />
                 CARTÃO DE DÉBITO
-              </StyledMethodOfPayment>
-              <StyledMethodOfPayment
-                isSelected={selectedMethod === "method3"}
-                onClick={() => handleMethodSelect("method3")}
+              </S.PaymentMethod>
+              <S.PaymentMethod
+                selected={selectedMethod === paymentMethods.MONEY}
+                onClick={() => handleMethodSelect(paymentMethods.MONEY)}
               >
                 <Money size={16} />
                 DINHEIRO
-              </StyledMethodOfPayment>
-            </MethodsOfPaymentContainer>
+              </S.PaymentMethod>
+            </S.PaymentMethodContainer>
           </PaymentContainer>
         </AddressAndPaymentContainer>
 
