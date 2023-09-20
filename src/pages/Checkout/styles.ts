@@ -29,6 +29,7 @@ export const CheckoutTitle = styled.p`
 export const SelectedCoffeesContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: 1.5rem;
   background-color: ${(props) => props.theme["base-card"]};
   padding: 25px;
@@ -74,30 +75,27 @@ export const PaymentContainer = styled.div`
   gap: 2.5rem;
   border-radius: 6px;
 
-  background-color: ${(props) => props.theme["base-card"]};
+  background-color: ${({theme}) => theme["base-card"]};
 `;
 
-export const MethodsOfPaymentContainer = styled.div`
+ const PaymentMethodContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const StyledMethodOfPayment = styled.div<{ isSelected: boolean }>`
+ const PaymentMethod = styled.div<{ selected: boolean }>`
   display: flex;
   border-radius: 6px;
   gap: 0.2rem;
-
   font-size: 15px;
-
   user-select: none;
-
   padding: 16px;
   border: 1px solid transparent;
-  background: ${(props) => props.theme["base-button"]};
+  background: ${({theme}) => theme["base-button"]};
   cursor: pointer;
 
-  ${({ isSelected }) =>
-    isSelected &&
+  ${( props ) =>
+    props.selected &&
     `
     border: 1px solid #8047F8;
     background: #EBE5F9;
@@ -107,3 +105,6 @@ export const StyledMethodOfPayment = styled.div<{ isSelected: boolean }>`
     color: #8047f8;
   }
 `;
+
+const StyledCheckout = { PaymentMethod, PaymentMethodContainer }
+export { StyledCheckout };
