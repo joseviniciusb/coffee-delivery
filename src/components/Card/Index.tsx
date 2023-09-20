@@ -8,11 +8,12 @@ import { coffees } from "../Coffees/coffees";
 
 export const Card = () => {
   let BRL = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
+    style: "decimal",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
   });
 
-  const { shoppingCartItems, setShoppingCartItems } = useAppContext();
+  const { shoppingCartItems, handleProduct } = useAppContext();
 
   function itemCartQuantity(id: number) {
     const itemIndex = shoppingCartItems.findIndex(
@@ -23,33 +24,6 @@ export const Card = () => {
 
     return shoppingCartItems[itemIndex].count;
   }
-
-  const handleProduct = (id: number, increment: number) => {
-    const updatedCartItems = [...shoppingCartItems];
-
-    const itemIndex = updatedCartItems.findIndex(
-      (item) => item.coffeeId === id
-    );
-
-    if (itemIndex < 0 && increment === -1) return;
-
-    if (
-      increment === -1 &&
-      itemIndex >= 0 &&
-      updatedCartItems[itemIndex].count === 1
-    ) {
-      updatedCartItems.splice(itemIndex, 1);
-      setShoppingCartItems(updatedCartItems);
-      return;
-    }
-
-    if (itemIndex >= 0)
-      updatedCartItems[itemIndex].count =
-        updatedCartItems[itemIndex].count + increment;
-    else updatedCartItems.push({ coffeeId: id, count: 1 });
-
-    setShoppingCartItems(updatedCartItems);
-  };
 
   type TagType = string | { tag1: string; tag2: string };
 
@@ -77,7 +51,7 @@ export const Card = () => {
               <h2>{card.name}</h2>
               <span>{card.description}</span>
               <div>
-                <p>{BRL.format(card.price)}</p>
+                <p><span>R$ </span>{BRL.format(card.price)}</p>
                 <nav>
                   <CounterContainer>
                     <p onClick={() => handleProduct(card.id, -1)}>-</p>
