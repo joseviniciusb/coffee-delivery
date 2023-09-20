@@ -8,16 +8,17 @@ import { Router } from "./Router";
 import { AppProvider } from "./contexts/ProductsContext";
 
 function App() {
+
   return (
     <ThemeProvider theme={defaultTheme}>
+      <AppProvider>
       <BrowserRouter>
         <LayoutContainer>
-          <AppProvider>
             <Router />
-          </AppProvider>
         </LayoutContainer>
         <GlobalStyle />
       </BrowserRouter>
+      </AppProvider>
     </ThemeProvider>
   );
 }
