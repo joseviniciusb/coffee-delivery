@@ -112,12 +112,12 @@ export const Checkout = () => {
 
             <AmountContainer>
               <AmountText>Entrega</AmountText>
-              <AmountText>R$ {BRL.format(deliveryFee)}</AmountText>
+              <AmountText>{BRL.format(deliveryFee)}</AmountText>
             </AmountContainer>
 
             <AmountContainer>
               <AmountText>Total</AmountText>
-              <AmountText>R$ {BRL.format(totalPrice + deliveryFee)}</AmountText>
+              <AmountText>{BRL.format(totalPrice + deliveryFee)}</AmountText>
             </AmountContainer>
           </TotalPriceContainer>
 
