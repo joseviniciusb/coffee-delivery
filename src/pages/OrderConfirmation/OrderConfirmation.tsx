@@ -21,6 +21,7 @@ export const OrderConfirmation = () => {
         border-box;
 
     border: 2px solid transparent;
+    border-radius: 6px 36px 6px 36px;
   `;
 
   const DeliveryRiderIlustrationContainer = styled.div``;
