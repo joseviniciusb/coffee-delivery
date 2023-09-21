@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import { AppContextType } from "./AppContextTypes";
+import { AppContextType, CartItem } from "./AppContextTypes";
+import { Coffee } from "../types/Coffee";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -44,8 +45,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     setShoppingCartItems(updatedCartItems);
   };
 
+   function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
+    return shoppingCartItems.map(({ coffeeId, count }) => {
+      const coffee = coffees.find((c) => c.id === coffeeId) as Coffee;
+      return {
+        ...coffee,
+        count,
+      };
+    });
+  }
+
+  const sumTotalPrice = (filteredCoffees: Coffee[]) => {
+    const initialValue = 0;
+
+    const sumItems = filteredCoffees.reduce(
+      (accumulator, currentValue) =>
+        accumulator + currentValue.price * currentValue.count,
+      initialValue
+    );
+
+    return sumItems;
+  };
+
   return (
-    <AppContext.Provider value={{ shoppingCartItems, setShoppingCartItems, handleProduct, removeProduct }}>
+    <AppContext.Provider value={{ shoppingCartItems, setShoppingCartItems, handleProduct, removeProduct, filterCoffeesById, sumTotalPrice }}>
       {children}
     </AppContext.Provider>
   );
