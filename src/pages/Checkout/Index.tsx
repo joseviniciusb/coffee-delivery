@@ -13,7 +13,7 @@ import {
   SelectedCoffeesContainer,
   TitleContainer,
   TotalPriceContainer,
-  StyledCheckout as S
+  StyledCheckout as S,
 } from "./styles";
 import {
   InfoContainer,
@@ -22,14 +22,32 @@ import {
   TextContainer,
 } from "./components/AddressForm/styles";
 import { useState } from "react";
+import { useAppContext } from "../../contexts/ProductsContext";
+import { coffees } from "../../components/Coffees/coffees";
 
 export const Checkout = () => {
+  const { shoppingCartItems, sumTotalPrice, filterCoffeesById } =
+    useAppContext();
+
+  let BRL = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const filteredCoffees = filterCoffeesById(coffees, shoppingCartItems);
+
+  const totalPrice = sumTotalPrice(filteredCoffees);
+  const deliveryFee = 3.5;
 
   enum paymentMethods {
-    CREDIT, DEBIT, MONEY
+    CREDIT,
+    DEBIT,
+    MONEY,
   }
 
-  const [selectedMethod, setSelectedMethod] = useState<paymentMethods | null>(null);
+  const [selectedMethod, setSelectedMethod] = useState<paymentMethods | null>(
+    null
+  );
 
   const handleMethodSelect = (method: paymentMethods) => {
     setSelectedMethod(method);
@@ -89,17 +107,17 @@ export const Checkout = () => {
           <TotalPriceContainer>
             <AmountContainer>
               <AmountText>Total de itens</AmountText>
-              <AmountText>R$ 29,70</AmountText>
+              <AmountText>R$ {BRL.format(totalPrice)}</AmountText>
             </AmountContainer>
 
             <AmountContainer>
               <AmountText>Entrega</AmountText>
-              <AmountText>R$ 3,50</AmountText>
+              <AmountText>R$ {BRL.format(deliveryFee)}</AmountText>
             </AmountContainer>
 
             <AmountContainer>
               <AmountText>Total</AmountText>
-              <AmountText>R$ 33,20</AmountText>
+              <AmountText>R$ {BRL.format(totalPrice + deliveryFee)}</AmountText>
             </AmountContainer>
           </TotalPriceContainer>
 
