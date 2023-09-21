@@ -14,6 +14,7 @@ import {
   TitleContainer,
   TotalPriceContainer,
   StyledCheckout as S,
+  ConfirmOrderButtonContainer,
 } from "./styles";
 import {
   InfoContainer,
@@ -24,6 +25,7 @@ import {
 import { useState } from "react";
 import { useAppContext } from "../../contexts/ProductsContext";
 import { coffees } from "../../components/Coffees/coffees";
+import { NavLink } from "react-router-dom";
 
 export const Checkout = () => {
   const { shoppingCartItems, sumTotalPrice, filterCoffeesById } =
@@ -121,7 +123,11 @@ export const Checkout = () => {
             </AmountContainer>
           </TotalPriceContainer>
 
-          <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+          <ConfirmOrderButtonContainer>
+            <NavLink to="/order-confirmation">
+              <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+            </NavLink>
+          </ConfirmOrderButtonContainer>
         </SelectedCoffeesContainer>
       </AddressContainer>
     </CheckoutContainer>

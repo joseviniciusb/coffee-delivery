@@ -55,6 +55,9 @@ export const AmountText = styled.span`
   font-size: 0.875rem;
 `;
 
+export const ConfirmOrderButtonContainer = styled.div`
+`
+
 export const ConfirmOrderButton = styled.button`
   width: 368px;
   padding: 12px 32px;
