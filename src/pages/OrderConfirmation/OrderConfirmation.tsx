@@ -12,6 +12,16 @@ export const OrderConfirmation = () => {
   `;
 
   const OrderInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+    padding: 2.5rem;
+    gap: 2.5rem;
+    white-space: normal;
+
+    font-size: 16px;
+
     background: linear-gradient(white, white) padding-box,
       linear-gradient(
           to right,
@@ -22,6 +32,12 @@ export const OrderConfirmation = () => {
 
     border: 2px solid transparent;
     border-radius: 6px 36px 6px 36px;
+  `;
+
+  const InfoTextContainer = styled.div`
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
   `;
 
   const DeliveryRiderIlustrationContainer = styled.div``;
@@ -42,6 +58,12 @@ export const OrderConfirmation = () => {
     color: ${(props) => props.theme["base-subtitle"]};
   `;
 
+  const InfoText = styled.p`
+    :first-child {
+      font-weight: bold;
+    }
+  `;
+
   return (
     <OrderConfirmationContainer>
       <div>
@@ -53,23 +75,27 @@ export const OrderConfirmation = () => {
 
       <FlexContainer>
         <OrderInfoContainer>
-          <div>
-            <MapPin size={16} weight="fill" color="purple" />
-            <span>
-              Entrega em Rua João Daniel Martinelli, 102 Farrapos - Porto
-              Alegre, RS
-            </span>
-          </div>
+          <InfoTextContainer>
+            <MapPin size={32} weight="fill" color="purple" />
+            <InfoText>
+              Entrega em <span> Rua João Daniel Martinelli, 102</span> Farrapos
+              - Porto Alegre, RS
+            </InfoText>
+          </InfoTextContainer>
 
-          <div>
-            <Timer />
-            <span>Previsão de entrega 20 min - 30 min </span>
-          </div>
+          <InfoTextContainer>
+            <Timer size={32} weight="fill" color="yellow" />
+            <InfoText>
+              Previsão de entrega <p>20 min - 30 min</p>
+            </InfoText>
+          </InfoTextContainer>
 
-          <div>
-            <CurrencyDollar />
-            <span>Pagamento na entrega Cartão de Crédito</span>
-          </div>
+          <InfoTextContainer>
+            <CurrencyDollar size={32} />
+            <InfoText>
+              Pagamento na entrega <p>Cartão de crédito</p>
+            </InfoText>
+          </InfoTextContainer>
         </OrderInfoContainer>
 
         <DeliveryRiderIlustrationContainer>
