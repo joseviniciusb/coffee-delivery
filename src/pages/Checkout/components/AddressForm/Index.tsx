@@ -1,4 +1,3 @@
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import {
   AddressInput,
   FormContainer,
@@ -10,31 +9,25 @@ import {
 
 import { MapPin } from "phosphor-react";
 
-type Inputs = {
-  cep: string;
-  rua: string;
-  numero: number;
-  complemento: string;
-  bairro: string;
-  cidade: string;
-  uf: string;
-  exampleRequired: string;
-};
-
-const AddressForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-
-  const methods = useForm();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
-  console.log(watch("cep"));
-
+const AddressForm = ({
+  register,
+  errors,
+  adressFormRef,
+  handleSubmit,
+  getValues,
+  setValue,
+}) => {
   let YELLOW_DARK = "#C47F17";
+
+  function handleCEP() {
+    const inputValue = getValues("cep");
+    var cleanedInput = inputValue.replace(/\D/g, "");
+
+    if (cleanedInput.length > 5) 
+      cleanedInput = cleanedInput.slice(0, 5) + "-" + cleanedInput.slice(5);
+    
+    setValue("cep", cleanedInput.slice(0, 9));
+  }
 
   return (
     <>
@@ -49,36 +42,42 @@ const AddressForm = () => {
           </TextContainer>
         </InfoContainer>
 
-        <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <AddressInput {...register("cep")} placeholder="CEP" />
-            <AddressInput
-              {...register("rua", { required: true })}
-              placeholder="Rua"
-            />
-            <AddressInput
-              {...register("numero", { required: true })}
-              placeholder="Número"
-            />
-            <AddressInput
-              {...register("complemento")}
-              placeholder="Complemento"
-            />
-            <AddressInput
-              {...register("bairro", { required: true })}
-              placeholder="Bairro"
-            />
-            <AddressInput
-              {...register("cidade", { required: true })}
-              placeholder="Cidade"
-            />
-            <AddressInput
-              {...register("uf", { required: true })}
-              placeholder="UF"
-            />
-            {errors.exampleRequired && <span>This field is required</span>}
-          </form>
-        </FormProvider>
+        <form ref={adressFormRef} onSubmit={handleSubmit}>
+          <AddressInput
+            {...register("cep", {
+              required: true,
+              onChange: () => {
+                handleCEP();
+              },
+            })}
+            placeholder="CEP"
+          />
+          <AddressInput
+            {...register("rua", { required: true })}
+            placeholder="Rua"
+            error={errors["rua"] !== undefined}
+          />
+          <AddressInput
+            {...register("numero", { required: true })}
+            placeholder="Número"
+          />
+          <AddressInput
+            {...register("complemento")}
+            placeholder="Complemento"
+          />
+          <AddressInput
+            {...register("bairro", { required: true })}
+            placeholder="Bairro"
+          />
+          <AddressInput
+            {...register("cidade", { required: true })}
+            placeholder="Cidade"
+          />
+          <AddressInput
+            {...register("uf", { required: true })}
+            placeholder="UF"
+          />
+        </form>
       </FormContainer>
     </>
   );
