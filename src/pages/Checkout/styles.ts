@@ -54,8 +54,7 @@ export const AmountText = styled.span`
   font-size: 0.875rem;
 `;
 
-export const ConfirmOrderButtonContainer = styled.div`
-`
+export const ConfirmOrderButtonContainer = styled.div``;
 
 export const ConfirmOrderButton = styled.button`
   width: 368px;
@@ -74,18 +73,18 @@ export const PaymentContainer = styled.div`
   display: flex;
   padding: 2.2rem;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
   border-radius: 6px;
 
-  background-color: ${({theme}) => theme["base-card"]};
+  background-color: ${({ theme }) => theme["base-card"]};
 `;
 
- const PaymentMethodContainer = styled.div`
+const PaymentMethodContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
 `;
 
- const PaymentMethod = styled.div<{ selected: boolean }>`
+const PaymentMethod = styled.div<{ selected: boolean }>`
   display: flex;
   border-radius: 6px;
   gap: 0.2rem;
@@ -93,10 +92,10 @@ export const PaymentContainer = styled.div`
   user-select: none;
   padding: 16px;
   border: 1px solid transparent;
-  background: ${({theme}) => theme["base-button"]};
+  background: ${({ theme }) => theme["base-button"]};
   cursor: pointer;
 
-  ${( props ) =>
+  ${(props) =>
     props.selected &&
     `
     border: 1px solid #8047F8;
@@ -108,5 +107,5 @@ export const PaymentContainer = styled.div`
   }
 `;
 
-const StyledCheckout = { PaymentMethod, PaymentMethodContainer }
+const StyledCheckout = { PaymentMethod, PaymentMethodContainer };
 export { StyledCheckout };
