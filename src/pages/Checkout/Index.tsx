@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
 import AddressForm from "./components/AddressForm/Index";
 import { CheckoutCartItems } from "./components/CheckoutCartItems";
@@ -25,7 +26,9 @@ import {
 import { useState } from "react";
 import { useAppContext } from "../../contexts/ProductsContext";
 import { coffees } from "../../components/Coffees/coffees";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { PaymentMethods } from "../../types/PaymentMethods";
 
 export const Checkout = () => {
   const { shoppingCartItems, sumTotalPrice, filterCoffeesById } =
@@ -41,19 +44,57 @@ export const Checkout = () => {
   const totalPrice = sumTotalPrice(filteredCoffees);
   const deliveryFee = 3.5;
 
-  enum paymentMethods {
-    CREDIT,
-    DEBIT,
-    MONEY,
-  }
 
-  const [selectedMethod, setSelectedMethod] = useState<paymentMethods | null>(
+
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethods | null>(
     null
   );
 
-  const handleMethodSelect = (method: paymentMethods) => {
+  const handleMethodSelect = (method: PaymentMethods) => {
     setSelectedMethod(method);
   };
+
+  type Inputs = {
+    cep: string;
+    rua: string;
+    numero: number;
+    complemento: string;
+    bairro: string;
+    cidade: string;
+    uf: string;
+    exampleRequired: string;
+  };
+
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+    setValue
+  } = useForm<Inputs>();
+
+  const adressFormRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log("deu");
+    console.log(data);
+    navigate("/order-confirmation", {state: {formData: data, selectedMethod}});
+  };
+
+ 
+  console.log(errors);
+
+  const adressFormProps = { 
+    register,
+    errors,
+    adressFormRef,
+    handleSubmit: handleSubmit(onSubmit),
+    getValues,
+    setValue
+  }
+  
 
   return (
     <CheckoutContainer>
@@ -64,7 +105,9 @@ export const Checkout = () => {
 
       <AddressContainer>
         <AddressAndPaymentContainer>
-          <AddressForm />
+          <AddressForm
+            {...adressFormProps}
+          />
           <PaymentContainer>
             <InfoContainer>
               <CurrencyDollarSimple color="#8047F8" size={20} />
@@ -79,22 +122,22 @@ export const Checkout = () => {
 
             <S.PaymentMethodContainer>
               <S.PaymentMethod
-                selected={selectedMethod === paymentMethods.CREDIT}
-                onClick={() => handleMethodSelect(paymentMethods.CREDIT)}
+                selected={selectedMethod === PaymentMethods.CREDIT}
+                onClick={() => handleMethodSelect(PaymentMethods.CREDIT)}
               >
                 <CreditCard size={16} />
                 CARTÃO DE CRÉDITO
               </S.PaymentMethod>
               <S.PaymentMethod
-                selected={selectedMethod === paymentMethods.DEBIT}
-                onClick={() => handleMethodSelect(paymentMethods.DEBIT)}
+                selected={selectedMethod === PaymentMethods.DEBIT}
+                onClick={() => handleMethodSelect(PaymentMethods.DEBIT)}
               >
                 <Bank size={16} />
                 CARTÃO DE DÉBITO
               </S.PaymentMethod>
               <S.PaymentMethod
-                selected={selectedMethod === paymentMethods.MONEY}
-                onClick={() => handleMethodSelect(paymentMethods.MONEY)}
+                selected={selectedMethod === PaymentMethods.MONEY}
+                onClick={() => handleMethodSelect(PaymentMethods.MONEY)}
               >
                 <Money size={16} />
                 DINHEIRO
@@ -103,32 +146,47 @@ export const Checkout = () => {
           </PaymentContainer>
         </AddressAndPaymentContainer>
 
-        <SelectedCoffeesContainer>
-          <CheckoutCartItems />
+        <div>
+          <SelectedCoffeesContainer>
+            <CheckoutCartItems />
 
-          <TotalPriceContainer>
-            <AmountContainer>
-              <AmountText>Total de itens</AmountText>
-              <AmountText>R$ {BRL.format(totalPrice)}</AmountText>
-            </AmountContainer>
+            <TotalPriceContainer>
+              <AmountContainer>
+                <AmountText>Total de itens</AmountText>
+                <AmountText>R$ {BRL.format(totalPrice)}</AmountText>
+              </AmountContainer>
 
-            <AmountContainer>
-              <AmountText>Entrega</AmountText>
-              <AmountText>{BRL.format(deliveryFee)}</AmountText>
-            </AmountContainer>
+              <AmountContainer>
+                <AmountText>Entrega</AmountText>
+                <AmountText>{BRL.format(deliveryFee)}</AmountText>
+              </AmountContainer>
 
-            <AmountContainer>
-              <AmountText>Total</AmountText>
-              <AmountText>{BRL.format(totalPrice + deliveryFee)}</AmountText>
-            </AmountContainer>
-          </TotalPriceContainer>
+              <AmountContainer>
+                <AmountText>Total</AmountText>
+                <AmountText>{BRL.format(totalPrice + deliveryFee)}</AmountText>
+              </AmountContainer>
+            </TotalPriceContainer>
 
-          <ConfirmOrderButtonContainer>
-            <NavLink to="/order-confirmation">
-              <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
-            </NavLink>
-          </ConfirmOrderButtonContainer>
-        </SelectedCoffeesContainer>
+            <ConfirmOrderButtonContainer>
+              <ConfirmOrderButton
+                onClick={() => {
+                  adressFormRef.current.requestSubmit();
+                }}
+              >
+                CONFIRMAR PEDIDO
+              </ConfirmOrderButton>
+            </ConfirmOrderButtonContainer>
+          </SelectedCoffeesContainer>
+          {Object.keys(errors).length > 0 && (
+            <div>
+              {Object.entries(errors).map(([inputName, error]) => (
+                <p key={inputName}>
+                  O campo {inputName} é obrigatório
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
       </AddressContainer>
     </CheckoutContainer>
   );
