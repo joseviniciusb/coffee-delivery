@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
-import AddressForm from "./components/AddressForm/Index";
+import AddressForm from "./components/AddressForm/AddressForm";
 import { CheckoutCartItems } from "./components/CheckoutCartItems";
 import {
   AddressAndPaymentContainer,

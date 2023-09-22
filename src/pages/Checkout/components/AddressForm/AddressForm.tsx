@@ -23,9 +23,9 @@ const AddressForm = ({
     const inputValue = getValues("cep");
     var cleanedInput = inputValue.replace(/\D/g, "");
 
-    if (cleanedInput.length > 5) 
+    if (cleanedInput.length > 5)
       cleanedInput = cleanedInput.slice(0, 5) + "-" + cleanedInput.slice(5);
-    
+
     setValue("cep", cleanedInput.slice(0, 9));
   }
 
