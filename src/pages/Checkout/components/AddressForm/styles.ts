@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-const BaseInput = styled.input`
+const BaseInput = styled.input<{error: boolean}>`
   height: 2.5rem;
   font-weight: bold;
   font-size: inherit;
   padding: 0 0.5rem;
 
-  border: 0;
+  border: ${({error})=> error?'1px solid red':'0'};
   margin: 0.5rem;
 
   color: ${(props) => props.theme["text-base"]};
