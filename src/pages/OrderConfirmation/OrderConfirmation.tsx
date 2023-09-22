@@ -21,6 +21,16 @@ export const OrderConfirmation = () => {
 
   console.log(location.state);
 
+  const { cep, rua, numero, complemento, bairro } = location.state.formData;
+  let { selectedMethod } = location.state;
+
+  console.log(cep, rua, numero, complemento, bairro);
+  console.log("a", selectedMethod);
+
+  if (selectedMethod == 0) selectedMethod = "Cartão de crédito";
+  if (selectedMethod == 1) selectedMethod = "Cartão de débito";
+  else selectedMethod = "Dinheiro";
+
   return (
     <OrderConfirmationContainer>
       <div>
@@ -37,9 +47,12 @@ export const OrderConfirmation = () => {
               <MapPin size={32} weight="fill" color="purple" />
               <div>
                 <InfoText>
-                  Entrega em <span> Rua João Daniel Martinelli, 102</span>
+                  Entrega em{" "}
+                  <span>
+                    {rua}, {numero}
+                  </span>
                 </InfoText>
-                <InfoText>Farrapos - Porto Alegre, RS</InfoText>
+                <InfoText>{bairro} - Porto Alegre, RS</InfoText>
               </div>
             </InfoTextContainer>
 
@@ -55,7 +68,7 @@ export const OrderConfirmation = () => {
               <CurrencyDollar size={32} />
               <div>
                 <InfoText>Pagamento na entrega</InfoText>
-                <InfoText>Cartão de crédito</InfoText>
+                <InfoText>{selectedMethod}</InfoText>
               </div>
             </InfoTextContainer>
           </OrderInfoContainer>
