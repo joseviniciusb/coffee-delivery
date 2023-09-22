@@ -44,8 +44,6 @@ export const Checkout = () => {
   const totalPrice = sumTotalPrice(filteredCoffees);
   const deliveryFee = 3.5;
 
-
-
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethods | null>(
     null
   );
@@ -70,7 +68,7 @@ export const Checkout = () => {
     getValues,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm<Inputs>();
 
   const adressFormRef = useRef(null);
@@ -78,23 +76,19 @@ export const Checkout = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("deu");
-    console.log(data);
-    navigate("/order-confirmation", {state: {formData: data, selectedMethod}});
+    navigate("/order-confirmation", {
+      state: { formData: data, selectedMethod },
+    });
   };
 
- 
-  console.log(errors);
-
-  const adressFormProps = { 
+  const adressFormProps = {
     register,
     errors,
     adressFormRef,
     handleSubmit: handleSubmit(onSubmit),
     getValues,
-    setValue
-  }
-  
+    setValue,
+  };
 
   return (
     <CheckoutContainer>
@@ -105,9 +99,7 @@ export const Checkout = () => {
 
       <AddressContainer>
         <AddressAndPaymentContainer>
-          <AddressForm
-            {...adressFormProps}
-          />
+          <AddressForm {...adressFormProps} />
           <PaymentContainer>
             <InfoContainer>
               <CurrencyDollarSimple color="#8047F8" size={20} />
@@ -180,9 +172,7 @@ export const Checkout = () => {
           {Object.keys(errors).length > 0 && (
             <div>
               {Object.entries(errors).map(([inputName, error]) => (
-                <p key={inputName}>
-                  O campo {inputName} é obrigatório
-                </p>
+                <p key={inputName}>O campo {inputName} é obrigatório</p>
               ))}
             </div>
           )}
