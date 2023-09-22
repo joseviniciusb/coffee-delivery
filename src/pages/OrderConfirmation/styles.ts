@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const OrderConfirmationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
 `;
 
 export const OrderInfoContainer = styled.div`
   background-color: ${(props) => props.theme["background"]};
   display: flex;
+  float: left;
   flex-direction: column;
   background-color: #fafafa;
-  padding: 3rem 2rem 3rem 2rem;
+  padding: 3rem 8rem 3rem 2rem;
   gap: 1.5rem;
 `;
 
@@ -53,7 +54,7 @@ export const DeliveryRiderIlustrationContainer = styled.div``;
 
 export const FlexContainer = styled.div`
   display: flex;
-  gap: 3rem;
+  gap: 10rem;
 `;
 
 export const StyledTitle = styled.h1`
