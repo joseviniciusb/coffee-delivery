@@ -29,7 +29,6 @@ export const CheckoutTitle = styled.p`
 export const SelectedCoffeesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   gap: 1.5rem;
   background-color: ${(props) => props.theme["base-card"]};
   padding: 25px;
