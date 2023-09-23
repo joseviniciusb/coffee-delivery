@@ -13,6 +13,14 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 2px ${(props) => props.theme["green-500"]}
 }
 
+a:active {
+    box-shadow: none;
+}
+
+a:focus {
+    box-shadow: none;
+}
+
 body{
 
 background-color: ${(props) => props.theme["background"]} ;

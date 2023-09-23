@@ -14,6 +14,11 @@ export const HeaderContainer = styled.header`
     color: ${(props) => props.theme["purple-dark"]};
     gap: 0.7rem;
   }
+
+  a{
+    border: 0 transparent;
+  }
+
 `;
 
 export const LocationContainer = styled.div`
