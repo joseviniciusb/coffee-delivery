@@ -21,10 +21,10 @@ export const OrderConfirmation = () => {
 
   console.log(location.state);
 
-  const { cep, rua, numero, complemento, bairro } = location.state.formData;
+  const { cep, rua, numero, complemento, bairro, cidade, estado } = location.state.formData;
   let { selectedMethod } = location.state;
 
-  console.log(cep, rua, numero, complemento, bairro);
+  console.log(cep, rua, numero, complemento, bairro, cidade, estado);
   console.log("a", selectedMethod);
 
   if (selectedMethod == 0) selectedMethod = "Cartão de crédito";
@@ -52,7 +52,7 @@ export const OrderConfirmation = () => {
                     {rua}, {numero}
                   </span>
                 </InfoText>
-                <InfoText>{bairro} - Porto Alegre, RS</InfoText>
+                <InfoText>{bairro} - {cidade}, {estado}</InfoText>
               </div>
             </InfoTextContainer>
 
