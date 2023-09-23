@@ -8,6 +8,7 @@ import Logo from "../../assets/Logo.svg";
 import Location from "../../assets/Location.svg";
 import shoppingCart from "../../assets/shoppingCart.svg";
 import { useAppContext } from "../../contexts/ProductsContext";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   const { shoppingCartItems } = useAppContext();
@@ -22,17 +23,22 @@ export const Header = () => {
 
   return (
     <HeaderContainer>
-      <img src={Logo} />
+      <NavLink to="/">
+        <img src={Logo} />{" "}
+      </NavLink>
+
       <nav>
         <LocationContainer>
           <img src={Location}></img>
           <span>Porto Alegre, RS</span>
         </LocationContainer>
         <ShoppingCartIconContainer>
-          <img src={shoppingCart}></img>
-          <div>
-            <span>{totalItemsInCart}</span>
-          </div>
+          <NavLink to="/checkout">
+            <img src={shoppingCart}></img>
+            <div>
+              <span>{totalItemsInCart}</span>
+            </div>
+          </NavLink>
         </ShoppingCartIconContainer>
       </nav>
     </HeaderContainer>
