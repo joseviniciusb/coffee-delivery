@@ -5,7 +5,7 @@ export interface Coffee {
     name: string;
     description: string;
     price: number;
-    count: number;
+    count?: number;
   }
 
   
