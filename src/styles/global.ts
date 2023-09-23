@@ -17,9 +17,10 @@ a:active {
     box-shadow: none;
 }
 
-a:focus {
+a:focus, button:focus  {
     box-shadow: none;
 }
+
 
 body{
 
