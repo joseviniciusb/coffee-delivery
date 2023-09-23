@@ -23,11 +23,13 @@ export const InfoProductsContainer = styled.div`
 `;
 
 export const CounterContainer = styled.div`
-  display: flex;
+display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
   background: ${(props) => props.theme["base-button"]};
   padding: 0.3rem 0.5rem;
+  min-width: 64px;
 `;
 
 export const ActionsContainer = styled.div`
@@ -36,10 +38,10 @@ export const ActionsContainer = styled.div`
 `;
 
 export const BaseCounterButton = styled.span`
+
   color: ${(props) => props.theme["purple"]};
   font-size: 1.5rem;
   cursor: pointer;
- 
 `;
 export const IncrementButton = styled(BaseCounterButton)``;
 export const DecrementButton = styled(BaseCounterButton)``;
@@ -54,6 +56,8 @@ export const RemoveButton = styled.button`
   align-items: center;
   background: ${(props) => props.theme["base-button"]};
   border: 0;
+
+  cursor: pointer;
 `;
 
 export const ProductPrice = styled.p`
