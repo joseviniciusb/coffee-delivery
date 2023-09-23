@@ -1,6 +1,6 @@
 import { useTheme } from "styled-components";
 import { Trash } from "phosphor-react";
-import TradicionalExpressoIcon from "../../../../assets/coffes/TradicionalExpressoIcon.svg";
+
 import {
   ActionsContainer,
   Counter,
@@ -16,7 +16,6 @@ import {
 } from "./styles";
 import { coffees } from "../../../../components/Coffees/coffees";
 import { useAppContext } from "../../../../contexts/ProductsContext";
-
 
 export const CheckoutCartItems = () => {
   const { shoppingCartItems, handleProduct, removeProduct, filterCoffeesById } =
@@ -34,42 +33,43 @@ export const CheckoutCartItems = () => {
   return (
     <>
       {filteredCoffees.map((coffee, index) => {
-        return (
-          <>
-            <ProductContainer>
-              <ProductIcon src={TradicionalExpressoIcon} />
+        if (coffee.count)
+          return (
+            <>
+              <ProductContainer>
+                <ProductIcon src={coffee.image} />
 
-              <InfoProductsContainer>
-                <ProductName>{coffee.name}</ProductName>
-                <ActionsContainer>
-                  <CounterContainer>
-                    <DecrementButton
-                      onClick={() => handleProduct(coffee.id, -1)}
-                    >
-                      -
-                    </DecrementButton>
-                    <Counter>{coffee.count}</Counter>
-                    <IncrementButton
-                      onClick={() => handleProduct(coffee.id, 1)}
-                    >
-                      +
-                    </IncrementButton>
-                  </CounterContainer>
+                <InfoProductsContainer>
+                  <ProductName>{coffee.name}</ProductName>
+                  <ActionsContainer>
+                    <CounterContainer>
+                      <DecrementButton
+                        onClick={() => handleProduct(coffee.id, -1)}
+                      >
+                        -
+                      </DecrementButton>
+                      <Counter>{coffee.count}</Counter>
+                      <IncrementButton
+                        onClick={() => handleProduct(coffee.id, 1)}
+                      >
+                        +
+                      </IncrementButton>
+                    </CounterContainer>
 
-                  <RemoveButton onClick={() => removeProduct(index)}>
-                    <Trash size={18} color={theme["purple-dark"]} />
-                    Remover
-                  </RemoveButton>
-                </ActionsContainer>
-              </InfoProductsContainer>
+                    <RemoveButton onClick={() => removeProduct(index)}>
+                      <Trash size={18} color={theme["purple-dark"]} />
+                      Remover
+                    </RemoveButton>
+                  </ActionsContainer>
+                </InfoProductsContainer>
 
-              <ProductPrice>
-                {BRL.format(coffee.price * coffee.count)}
-              </ProductPrice>
-            </ProductContainer>
-            <hr></hr>
-          </>
-        );
+                <ProductPrice>
+                  {BRL.format(coffee.price * coffee.count)}
+                </ProductPrice>
+              </ProductContainer>
+              <hr></hr>
+            </>
+          );
       })}
     </>
   );
