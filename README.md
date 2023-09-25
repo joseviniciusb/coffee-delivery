@@ -16,13 +16,21 @@ npm install
 npm run dev
 
 ### Dependências Principais
+
 react: v18.2.0
+
 vite: v4.4.5
+
 styled-components: v6.0.7
+
 typescript: v5.0.2
+
 phosphor-react: v1.4.1
+
 react-dom: v18.2.0
+
 react-hook-form: v7.46.1
+
 react-router-dom: v6.16.0
 
 ### Contribuição
