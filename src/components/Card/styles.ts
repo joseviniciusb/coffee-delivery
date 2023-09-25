@@ -72,8 +72,7 @@ export const RealSign = styled.span`
 export const CounterContainer = styled.div`
   display: flex;
   width: 4.5rem;
-  padding: 10px;
-  margin-left: 1.5rem;
+
   user-select: none;
 
   p {
