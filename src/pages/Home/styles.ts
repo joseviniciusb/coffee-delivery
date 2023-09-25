@@ -59,13 +59,14 @@ export const CoffeListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 0.5rem;
 
   max-width: 1120px;
   max-height: 1360px;
 `;
 
 export const CardsContainer = styled.div`
-margin-top: 5rem;
+margin-top: 6rem;
 
 `
 
