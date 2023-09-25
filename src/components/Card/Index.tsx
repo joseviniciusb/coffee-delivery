@@ -1,7 +1,7 @@
 import { ShoppingCart } from "phosphor-react";
 import { CardsContainer, CoffeListContainer } from "../../pages/Home/styles";
 
-import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
+import { CardContainer, CounterContainer, CustomTagContainer, RealSign } from "./styles";
 import { NavLink } from "react-router-dom";
 import { useAppContext } from "../../contexts/ProductsContext";
 import { coffees } from "../Coffees/coffees";
@@ -51,7 +51,7 @@ export const Card = () => {
               <h2>{card.name}</h2>
               <span>{card.description}</span>
               <div>
-                <p><span>R$ </span>{BRL.format(card.price)}</p>
+                <p><RealSign>R$ </RealSign>{BRL.format(card.price)}</p>
                 <nav>
                   <CounterContainer>
                     <p onClick={() => handleProduct(card.id, -1)}>-</p>

@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const IntroContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 90rem;
 
   section {
     display: flex;

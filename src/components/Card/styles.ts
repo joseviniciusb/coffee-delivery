@@ -12,10 +12,6 @@ export const CardContainer = styled.div`
 
   background-color: ${(props) => props.theme["base-card"]};
 
-  span {
-    color: ${(props) => props.theme["base-label"]};
-  }
-
   div {
     display: flex;
     height: 2.375rem;
@@ -25,7 +21,7 @@ export const CardContainer = styled.div`
     margin-bottom: 1.2rem;
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: bolder;
     }
 
@@ -66,6 +62,11 @@ export const CardContainer = styled.div`
   h2 {
     color: ${(props) => props.theme["base-subtitle"]};
   }
+`;
+
+export const RealSign = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
 `;
 
 export const CounterContainer = styled.div`
