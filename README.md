@@ -1,28 +1,35 @@
-# React + TypeScript + Vite
+## Coffee Delivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O Coffee Delivery é um sistema de entrega de cafés desenvolvido em React com o uso do framework Vite. Ele permite que os usuários façam pedidos de cafés e acompanhem o status de entrega.
 
-Currently, two official plugins are available:
+### Requisitos
+Node.js
+npm (gerenciador de pacotes do Node.js)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Instalação
+Para instalar as dependências, execute o seguinte comando:
 
-## Expanding the ESLint configuration
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Iniciar Servidor de Desenvolvimento
 
-- Configure the top-level `parserOptions` property like this:
+npm run dev
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Dependências Principais
+react: v18.2.0
+vite: v4.4.5
+styled-components: v6.0.7
+typescript: v5.0.2
+phosphor-react: v1.4.1
+react-dom: v18.2.0
+react-hook-form: v7.46.1
+react-router-dom: v6.16.0
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# coffee-delivery
+### Contribuição
+Contribuições são bem-vindas! Siga as práticas recomendadas de desenvolvimento e envie pull requests.
+
+### Licença
+Este projeto está licenciado sob a licença MIT.
+
+### Contato
+Para dúvidas ou suporte, entre em contato por josevbluz@outlook.com ou visite meu linkedin https://www.linkedin.com/in/jose-vinicius-luz/
