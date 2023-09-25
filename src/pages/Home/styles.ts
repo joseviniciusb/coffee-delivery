@@ -9,7 +9,7 @@ export const IntroContainer = styled.div`
   section {
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    gap: 3.5rem;
   }
 `;
 
@@ -64,4 +64,9 @@ export const CoffeListContainer = styled.div`
   max-width: 1120px;
   max-height: 1360px;
 `;
+
+export const CardsContainer = styled.div`
+margin-top: 5rem;
+
+`
 

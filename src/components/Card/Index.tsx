@@ -1,5 +1,5 @@
 import { ShoppingCart } from "phosphor-react";
-import { CoffeListContainer } from "../../pages/Home/styles";
+import { CardsContainer, CoffeListContainer } from "../../pages/Home/styles";
 
 import { CardContainer, CounterContainer, CustomTagContainer } from "./styles";
 import { NavLink } from "react-router-dom";
@@ -40,7 +40,7 @@ export const Card = () => {
   };
 
   return (
-    <>
+    <CardsContainer>
       <h1>Nossos cafés</h1>
       <CoffeListContainer>
         {coffees.map((card, index) => {
@@ -74,6 +74,6 @@ export const Card = () => {
           );
         })}
       </CoffeListContainer>
-    </>
+    </CardsContainer>
   );
 };

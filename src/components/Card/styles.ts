@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
