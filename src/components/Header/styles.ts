@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 85%;
   align-items: center;
-  justify-content: space-around;
-  height: 6.5rem;
-  gap: 800px;
-  margin-top: -50px;
-  margin-bottom: 5rem;
+  justify-content: space-between;
+  height: 5rem;
+  background-color: ${(props) => props.theme["background"]};
 
   nav {
     display: flex;
@@ -18,6 +19,10 @@ export const HeaderContainer = styled.header`
   a {
     border: 0 transparent;
   }
+`;
+
+export const ContentContainer = styled.div`
+  margin-top: 6.5rem; /* A altura do seu cabeçalho */
 `;
 
 export const LocationContainer = styled.div`
