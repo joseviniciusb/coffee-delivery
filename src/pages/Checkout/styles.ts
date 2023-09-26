@@ -37,6 +37,10 @@ export const SelectedCoffeesContainer = styled.div`
   max-width: 462px;
 `;
 
+export const EmptyShoppingCart = styled.div`
+text-align: center;
+`
+
 export const TotalPriceContainer = styled.div`
   div:nth-last-child(1) {
     span {

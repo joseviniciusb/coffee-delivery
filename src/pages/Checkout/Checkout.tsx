@@ -1,5 +1,11 @@
 import { useRef } from "react";
-import { Bank, CreditCard, CurrencyDollarSimple, Money } from "phosphor-react";
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollarSimple,
+  Money,
+  SmileySad,
+} from "phosphor-react";
 import AddressForm from "./components/AddressForm/AddressForm";
 import { CheckoutCartItems } from "./components/CheckoutCartItems";
 import {
@@ -16,6 +22,7 @@ import {
   TotalPriceContainer,
   StyledCheckout as S,
   ConfirmOrderButtonContainer,
+  EmptyShoppingCart,
 } from "./styles";
 import {
   InfoContainer,
@@ -141,23 +148,35 @@ export const Checkout = () => {
         <div>
           <SelectedCoffeesContainer>
             <CheckoutCartItems />
+            {shoppingCartItems.length === 0 ? (
+              <EmptyShoppingCart>
+                <SmileySad color="#8047F8" size={32} />
+                <p>Seu carrinho de compras está vazio</p>
+                <p>
+                  Dê um propósito a ele — preencha-o com nossos deliciosos
+                  cafés.
+                </p>
+              </EmptyShoppingCart>
+            ) : (
+              <TotalPriceContainer>
+                <AmountContainer>
+                  <AmountText>Total de itens</AmountText>
+                  <AmountText>R$ {BRL.format(totalPrice)}</AmountText>
+                </AmountContainer>
 
-            <TotalPriceContainer>
-              <AmountContainer>
-                <AmountText>Total de itens</AmountText>
-                <AmountText>R$ {BRL.format(totalPrice)}</AmountText>
-              </AmountContainer>
+                <AmountContainer>
+                  <AmountText>Entrega</AmountText>
+                  <AmountText>{BRL.format(deliveryFee)}</AmountText>
+                </AmountContainer>
 
-              <AmountContainer>
-                <AmountText>Entrega</AmountText>
-                <AmountText>{BRL.format(deliveryFee)}</AmountText>
-              </AmountContainer>
-
-              <AmountContainer>
-                <AmountText>Total</AmountText>
-                <AmountText>{BRL.format(totalPrice + deliveryFee)}</AmountText>
-              </AmountContainer>
-            </TotalPriceContainer>
+                <AmountContainer>
+                  <AmountText>Total</AmountText>
+                  <AmountText>
+                    {BRL.format(totalPrice + deliveryFee)}
+                  </AmountText>
+                </AmountContainer>
+              </TotalPriceContainer>
+            )}
 
             <ConfirmOrderButtonContainer>
               <ConfirmOrderButton
