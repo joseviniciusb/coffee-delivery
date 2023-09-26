@@ -1,4 +1,5 @@
 import {
+  ContentContainer,
   HeaderContainer,
   LocationContainer,
   ShoppingCartIconContainer,
@@ -86,27 +87,30 @@ export const Header = () => {
   }
 
   return (
-    <HeaderContainer>
-      <NavLink to="/">
-        <img src={Logo} />{" "}
-      </NavLink>
+    <>
+      <HeaderContainer>
+        <NavLink to="/">
+          <img src={Logo} />{" "}
+        </NavLink>
 
-      <nav>
-        <LocationContainer>
-          <img src={Location}></img>
-          <span>
-            {city}, {stateAbbreviation}
-          </span>
-        </LocationContainer>
-        <ShoppingCartIconContainer>
-          <NavLink to="/checkout">
-            <img src={shoppingCart}></img>
-            <div>
-              <span>{totalItemsInCart}</span>
-            </div>
-          </NavLink>
-        </ShoppingCartIconContainer>
-      </nav>
-    </HeaderContainer>
+        <nav>
+          <LocationContainer>
+            <img src={Location}></img>
+            <span>
+              {city}, {stateAbbreviation}
+            </span>
+          </LocationContainer>
+          <ShoppingCartIconContainer>
+            <NavLink to="/checkout">
+              <img src={shoppingCart}></img>
+              <div>
+                <span>{totalItemsInCart}</span>
+              </div>
+            </NavLink>
+          </ShoppingCartIconContainer>
+        </nav>
+      </HeaderContainer>
+      <ContentContainer />
+    </>
   );
 };
