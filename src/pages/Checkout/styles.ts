@@ -29,7 +29,7 @@ export const CheckoutTitle = styled.p`
 export const SelectedCoffeesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   background-color: ${(props) => props.theme["base-card"]};
   padding: 25px;
   border-radius: 6px 44px 6px 44px;
@@ -38,8 +38,13 @@ export const SelectedCoffeesContainer = styled.div`
 `;
 
 export const EmptyShoppingCart = styled.div`
-text-align: center;
-`
+  text-align: center;
+  margin: 1rem;
+
+  p {
+    margin: 0.5rem;
+  }
+`;
 
 export const TotalPriceContainer = styled.div`
   div:nth-last-child(1) {
@@ -61,8 +66,8 @@ export const AmountText = styled.span`
 `;
 
 export const ConfirmOrderButtonContainer = styled.div`
-text-align: center;
-margin-top: 1.5rem;
+  text-align: center;
+  margin-top: 1.5rem;
 `;
 
 export const ConfirmOrderButton = styled.button`
