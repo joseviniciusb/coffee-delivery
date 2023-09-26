@@ -15,10 +15,9 @@ export const HeaderContainer = styled.header`
     gap: 0.7rem;
   }
 
-  a{
+  a {
     border: 0 transparent;
   }
-
 `;
 
 export const LocationContainer = styled.div`
@@ -27,7 +26,8 @@ export const LocationContainer = styled.div`
   display: flex;
   background-color: ${(props) => props.theme["purple-light"]};
   padding: 0.5rem;
-  width: 9.975rem;
+  width: 100%;
+  white-space: nowrap;
   gap: 0.5rem;
 `;
 
