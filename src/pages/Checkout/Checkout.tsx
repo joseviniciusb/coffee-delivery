@@ -150,7 +150,7 @@ export const Checkout = () => {
             <CheckoutCartItems />
             {shoppingCartItems.length === 0 ? (
               <EmptyShoppingCart>
-                <SmileySad color="#8047F8" size={32} />
+                <SmileySad color="#8047F8" size={40} />
                 <p>Seu carrinho de compras está vazio</p>
                 <p>
                   Dê um propósito a ele — preencha-o com nossos deliciosos
@@ -181,6 +181,7 @@ export const Checkout = () => {
             <ConfirmOrderButtonContainer>
               <ConfirmOrderButton
                 onClick={() => {
+                  if (!shoppingCartItems.length) return;
                   adressFormRef.current.requestSubmit();
                 }}
               >
