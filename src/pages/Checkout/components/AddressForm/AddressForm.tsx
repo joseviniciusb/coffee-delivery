@@ -10,7 +10,7 @@ import {
 
 import { MapPin } from "phosphor-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 
 interface Address {
   cep: string;
@@ -25,6 +25,7 @@ interface Address {
 interface AddressFormProps {
   register: ReturnType<typeof useForm>["register"];
   formState: ReturnType<typeof useForm>["formState"];
+
   adressFormRef: React.RefObject<HTMLFormElement>;
   getValues: ReturnType<typeof useForm>["getValues"];
   setValue: ReturnType<typeof useForm>["setValue"];
@@ -32,13 +33,15 @@ interface AddressFormProps {
 
 const AddressForm: React.FC<AddressFormProps> = ({
   register,
-  formState,
+
   adressFormRef,
   getValues,
   setValue,
 }) => {
   const [addressData, setAddressData] = useState<Address | null>(null);
   let YELLOW_DARK = "#C47F17";
+
+  const { errors } = useFormState();
 
   function handleCEP() {
     const inputValue = getValues("cep");
@@ -109,37 +112,37 @@ const AddressForm: React.FC<AddressFormProps> = ({
               },
             })}
             placeholder="CEP"
-            error={formState.errors["cep"] !== undefined}
+            error={!!errors["cep"]}
           />
           <AddressInput
             {...register("rua", { required: true })}
             placeholder="Rua"
-            error={formState.errors["rua"] !== undefined}
+            error={!!errors["rua"]}
           />
           <AddressInput
             {...register("numero", { required: true })}
             placeholder="Número"
-            error={formState.errors["numero"] !== undefined}
+            error={!!errors["numero"]}
           />
           <AddressInput
             {...register("complemento")}
             placeholder="Complemento"
-            error={formState.errors["complemento"] !== undefined}
+            error={!!errors["complemento"]}
           />
           <AddressInput
             {...register("bairro", { required: true })}
             placeholder="Bairro"
-            error={formState.errors["bairro"] !== undefined}
+            error={!!errors["bairro"]}
           />
           <AddressInput
             {...register("cidade", { required: true })}
             placeholder="Cidade"
-            error={formState.errors["cidade"] !== undefined}
+            error={!!errors["cidade"]}
           />
           <AddressInput
             {...register("uf", { required: true })}
             placeholder="UF"
-            error={formState.errors["uf"] !== undefined}
+            error={!!errors["uf"]}
           />
         </form>
       </FormContainer>
