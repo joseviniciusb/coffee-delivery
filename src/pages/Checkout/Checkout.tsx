@@ -97,6 +97,7 @@ export const Checkout = () => {
     setValue,
   };
 
+  
   return (
     <CheckoutContainer>
       <TitleContainer>

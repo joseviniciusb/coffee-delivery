@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   AddressInput,
   FormContainer,
@@ -8,6 +9,7 @@ import {
 } from "./styles";
 
 import { MapPin } from "phosphor-react";
+import { useState } from "react";
 
 const AddressForm = ({
   register,
@@ -17,6 +19,7 @@ const AddressForm = ({
   getValues,
   setValue,
 }) => {
+  const [addressData, setAddressData] = useState(null);
   let YELLOW_DARK = "#C47F17";
 
   function handleCEP() {
@@ -28,6 +31,42 @@ const AddressForm = ({
 
     setValue("cep", cleanedInput.slice(0, 9));
   }
+
+  async function fetchAddressByCEP(cep) {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar o endereço:", error);
+      return null;
+    }
+  }
+
+  async function handleCEPChange() {
+    const inputValue = getValues("cep");
+    var cleanedInput = inputValue.replace(/\D/g, "");
+
+    if (cleanedInput.length === 8) {
+      const address = await fetchAddressByCEP(cleanedInput);
+
+      if (address) {
+        setAddressData(address);
+
+        setValue("rua", address.logradouro);
+        setValue("bairro", address.bairro);
+        setValue("cidade", address.localidade);
+        setValue("uf", address.uf);
+      }
+    } else {
+      setAddressData(null);
+      setValue("rua", "");
+      setValue("bairro", "");
+      setValue("cidade", "");
+      setValue("uf", "");
+    }
+  }
+
+  console.log(addressData);
 
   return (
     <>
@@ -48,6 +87,7 @@ const AddressForm = ({
               required: true,
               onChange: () => {
                 handleCEP();
+                handleCEPChange();
               },
             })}
             placeholder="CEP"
