@@ -10,16 +10,34 @@ import {
 
 import { MapPin } from "phosphor-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-const AddressForm = ({
+interface Address {
+  cep: string;
+  rua: string;
+  numero: string;
+  complemento: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+}
+
+interface AddressFormProps {
+  register: ReturnType<typeof useForm>["register"];
+  formState: ReturnType<typeof useForm>["formState"];
+  adressFormRef: React.RefObject<HTMLFormElement>;
+  getValues: ReturnType<typeof useForm>["getValues"];
+  setValue: ReturnType<typeof useForm>["setValue"];
+}
+
+const AddressForm: React.FC<AddressFormProps> = ({
   register,
-  errors,
+  formState,
   adressFormRef,
-  handleSubmit,
   getValues,
   setValue,
 }) => {
-  const [addressData, setAddressData] = useState(null);
+  const [addressData, setAddressData] = useState<Address | null>(null);
   let YELLOW_DARK = "#C47F17";
 
   function handleCEP() {
@@ -32,7 +50,7 @@ const AddressForm = ({
     setValue("cep", cleanedInput.slice(0, 9));
   }
 
-  async function fetchAddressByCEP(cep) {
+  async function fetchAddressByCEP(cep: string) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
       return response.data;
@@ -81,7 +99,7 @@ const AddressForm = ({
           </TextContainer>
         </InfoContainer>
 
-        <form ref={adressFormRef} onSubmit={handleSubmit}>
+        <form ref={adressFormRef} onSubmit={(e) => e.preventDefault()}>
           <AddressInput
             {...register("cep", {
               required: true,
@@ -91,31 +109,37 @@ const AddressForm = ({
               },
             })}
             placeholder="CEP"
+            error={formState.errors["cep"] !== undefined}
           />
           <AddressInput
             {...register("rua", { required: true })}
             placeholder="Rua"
-            error={errors["rua"] !== undefined}
+            error={formState.errors["rua"] !== undefined}
           />
           <AddressInput
             {...register("numero", { required: true })}
             placeholder="Número"
+            error={formState.errors["numero"] !== undefined}
           />
           <AddressInput
             {...register("complemento")}
             placeholder="Complemento"
+            error={formState.errors["complemento"] !== undefined}
           />
           <AddressInput
             {...register("bairro", { required: true })}
             placeholder="Bairro"
+            error={formState.errors["bairro"] !== undefined}
           />
           <AddressInput
             {...register("cidade", { required: true })}
             placeholder="Cidade"
+            error={formState.errors["cidade"] !== undefined}
           />
           <AddressInput
             {...register("uf", { required: true })}
             placeholder="UF"
+            error={formState.errors["uf"] !== undefined}
           />
         </form>
       </FormContainer>
