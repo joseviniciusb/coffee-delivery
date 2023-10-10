@@ -36,7 +36,7 @@ export const CheckoutCartItems = () => {
         if (coffee.count)
           return (
             <>
-              <ProductContainer>
+              <ProductContainer key={coffee.id}>
                 <ProductIcon src={coffee.image} />
 
                 <InfoProductsContainer>
