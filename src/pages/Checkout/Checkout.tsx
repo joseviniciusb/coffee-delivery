@@ -37,6 +37,17 @@ import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PaymentMethods } from "../../types/PaymentMethods";
 
+export type CheckoutInputsTypes = {
+  cep: string;
+  rua: string;
+  numero: number;
+  complemento: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+  exampleRequired: string;
+};
+
 export const Checkout = () => {
   const { shoppingCartItems, sumTotalPrice, filterCoffeesById } =
     useAppContext();
@@ -59,30 +70,19 @@ export const Checkout = () => {
     setSelectedMethod(method);
   };
 
-  type Inputs = {
-    cep: string;
-    rua: string;
-    numero: number;
-    complemento: string;
-    bairro: string;
-    cidade: string;
-    uf: string;
-    exampleRequired: string;
-  };
-
   const {
     register,
     getValues,
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<Inputs>();
+  } = useForm<CheckoutInputsTypes>();
 
-  const adressFormRef = useRef(null);
+  const adressFormRef = useRef<HTMLFormElement>(null);
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<CheckoutInputsTypes> = (data) => {
     navigate("/order-confirmation", {
       state: { formData: data, selectedMethod },
     });
@@ -97,7 +97,6 @@ export const Checkout = () => {
     setValue,
   };
 
-  
   return (
     <CheckoutContainer>
       <TitleContainer>
@@ -183,7 +182,8 @@ export const Checkout = () => {
               <ConfirmOrderButton
                 onClick={() => {
                   if (!shoppingCartItems.length) return;
-                  adressFormRef.current.requestSubmit();
+                  if (adressFormRef.current)
+                    adressFormRef.current.requestSubmit();
                 }}
               >
                 CONFIRMAR PEDIDO
@@ -192,7 +192,7 @@ export const Checkout = () => {
           </SelectedCoffeesContainer>
           {Object.keys(errors).length > 0 && (
             <div>
-              {Object.entries(errors).map(([inputName, error]) => (
+              {Object.entries(errors).map(([inputName]) => (
                 <p key={inputName}>O campo {inputName} é obrigatório</p>
               ))}
             </div>
