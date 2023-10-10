@@ -9,43 +9,36 @@ import {
 } from "./styles";
 
 import { MapPin } from "phosphor-react";
-import { useState } from "react";
-import { useForm, useFormState } from "react-hook-form";
-
-interface Address {
-  cep: string;
-  rua: string;
-  numero: string;
-  complemento: string;
-  bairro: string;
-  cidade: string;
-  uf: string;
-}
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormGetValues,
+  UseFormSetValue,
+} from "react-hook-form";
+import { CheckoutInputsTypes } from "../../Checkout";
 
 interface AddressFormProps {
-  register: ReturnType<typeof useForm>["register"];
-  formState: ReturnType<typeof useForm>["formState"];
-
+  register: UseFormRegister<CheckoutInputsTypes>;
+  errors: FieldErrors;
   adressFormRef: React.RefObject<HTMLFormElement>;
-  getValues: ReturnType<typeof useForm>["getValues"];
-  setValue: ReturnType<typeof useForm>["setValue"];
+  getValues: UseFormGetValues<CheckoutInputsTypes>;
+  setValue: UseFormSetValue<CheckoutInputsTypes>;
+  handleSubmit: () => void;
 }
 
 const AddressForm: React.FC<AddressFormProps> = ({
   register,
-
+  errors,
   adressFormRef,
   getValues,
   setValue,
+  handleSubmit,
 }) => {
-  const [addressData, setAddressData] = useState<Address | null>(null);
-  let YELLOW_DARK = "#C47F17";
-
-  const { errors } = useFormState();
+  const YELLOW_DARK = "#C47F17";
 
   function handleCEP() {
     const inputValue = getValues("cep");
-    var cleanedInput = inputValue.replace(/\D/g, "");
+    let cleanedInput = inputValue.replace(/\D/g, "");
 
     if (cleanedInput.length > 5)
       cleanedInput = cleanedInput.slice(0, 5) + "-" + cleanedInput.slice(5);
@@ -65,29 +58,23 @@ const AddressForm: React.FC<AddressFormProps> = ({
 
   async function handleCEPChange() {
     const inputValue = getValues("cep");
-    var cleanedInput = inputValue.replace(/\D/g, "");
 
-    if (cleanedInput.length === 8) {
-      const address = await fetchAddressByCEP(cleanedInput);
+    if (inputValue.length === 9) {
+      const address = await fetchAddressByCEP(inputValue);
 
       if (address) {
-        setAddressData(address);
-
         setValue("rua", address.logradouro);
         setValue("bairro", address.bairro);
         setValue("cidade", address.localidade);
         setValue("uf", address.uf);
       }
     } else {
-      setAddressData(null);
       setValue("rua", "");
       setValue("bairro", "");
       setValue("cidade", "");
       setValue("uf", "");
     }
   }
-
-  console.log(addressData);
 
   return (
     <>
@@ -102,7 +89,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
           </TextContainer>
         </InfoContainer>
 
-        <form ref={adressFormRef} onSubmit={(e) => e.preventDefault()}>
+        <form ref={adressFormRef} onSubmit={handleSubmit}>
           <AddressInput
             {...register("cep", {
               required: true,
@@ -112,37 +99,37 @@ const AddressForm: React.FC<AddressFormProps> = ({
               },
             })}
             placeholder="CEP"
-            error={!!errors["cep"]}
+            $inputError={errors.hasOwnProperty("cep")}
           />
           <AddressInput
             {...register("rua", { required: true })}
             placeholder="Rua"
-            error={!!errors["rua"]}
+            $inputError={!!errors["rua"]}
           />
           <AddressInput
             {...register("numero", { required: true })}
             placeholder="Número"
-            error={!!errors["numero"]}
+            $inputError={!!errors["numero"]}
           />
           <AddressInput
             {...register("complemento")}
             placeholder="Complemento"
-            error={!!errors["complemento"]}
+            $inputError={!!errors["complemento"]}
           />
           <AddressInput
             {...register("bairro", { required: true })}
             placeholder="Bairro"
-            error={!!errors["bairro"]}
+            $inputError={!!errors["bairro"]}
           />
           <AddressInput
             {...register("cidade", { required: true })}
             placeholder="Cidade"
-            error={!!errors["cidade"]}
+            $inputError={!!errors["cidade"]}
           />
           <AddressInput
             {...register("uf", { required: true })}
             placeholder="UF"
-            error={!!errors["uf"]}
+            $inputError={!!errors["uf"]}
           />
         </form>
       </FormContainer>
