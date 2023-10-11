@@ -66,11 +66,8 @@ const AddressForm: React.FC<AddressFormProps> = ({
     if (inputValue.length === 9) {
       const address = await fetchAddressByCEP(inputValue);
 
-      console.log("address", address.erro);
       if (address.erro && inputValue.length === 9) {
         setInvalidCep(true);
-      } else {
-        setInvalidCep(false);
       }
 
       if (address) {
