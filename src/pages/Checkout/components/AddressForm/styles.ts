@@ -34,6 +34,22 @@ export const AddressInput = styled(BaseInput)`
   }
 `;
 
+export const CepContainer = styled.div`
+  display: flex;
+  position: relative;
+  max-width: 240px;
+
+  svg {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+  }
+
+  input {
+    text-align: left !important;
+  }
+`;
+
 export const FormContainer = styled.div`
   height: 400px;
   border-radius: 6px;

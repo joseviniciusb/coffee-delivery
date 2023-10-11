@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   AddressInput,
+  CepContainer,
   FormContainer,
   InfoContainer,
   InfoSubTitle,
@@ -8,7 +9,7 @@ import {
   TextContainer,
 } from "./styles";
 
-import { MapPin } from "phosphor-react";
+import { MapPin, Warning } from "phosphor-react";
 import {
   FieldErrors,
   UseFormRegister,
@@ -16,6 +17,8 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 import { CheckoutInputsTypes } from "../../Checkout";
+
+import { useState } from "react";
 
 interface AddressFormProps {
   register: UseFormRegister<CheckoutInputsTypes>;
@@ -34,6 +37,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
   setValue,
   handleSubmit,
 }) => {
+  const [invalidCep, setInvalidCep] = useState(false);
   const YELLOW_DARK = "#C47F17";
 
   function handleCEP() {
@@ -61,6 +65,13 @@ const AddressForm: React.FC<AddressFormProps> = ({
 
     if (inputValue.length === 9) {
       const address = await fetchAddressByCEP(inputValue);
+
+      console.log("address", address.erro);
+      if (address.erro && inputValue.length === 9) {
+        setInvalidCep(true);
+      } else {
+        setInvalidCep(false);
+      }
 
       if (address) {
         setValue("rua", address.logradouro);
@@ -90,17 +101,21 @@ const AddressForm: React.FC<AddressFormProps> = ({
         </InfoContainer>
 
         <form ref={adressFormRef} onSubmit={handleSubmit}>
-          <AddressInput
-            {...register("cep", {
-              required: true,
-              onChange: () => {
-                handleCEP();
-                handleCEPChange();
-              },
-            })}
-            placeholder="CEP"
-            $inputError={errors.hasOwnProperty("cep")}
-          />
+          <CepContainer>
+            <AddressInput
+              {...register("cep", {
+                required: true,
+                onChange: () => {
+                  handleCEP();
+                  handleCEPChange();
+                },
+              })}
+              placeholder="CEP"
+              $inputError={errors.hasOwnProperty("cep")}
+            />
+            {invalidCep ? <Warning size={28} color="red" weight="fill" /> : ""}
+          </CepContainer>
+
           <AddressInput
             {...register("rua", { required: true })}
             placeholder="Rua"
