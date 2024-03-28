@@ -10,12 +10,12 @@ import Location from "../../assets/Location.svg";
 import shoppingCart from "../../assets/shoppingCart.svg";
 import { useAppContext } from "../../contexts/ProductsContext";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const { shoppingCartItems } = useAppContext();
   const [city, setCity] = useState("");
-  const [stateAbbreviation, setStateAbbreviation] = useState("");
+  const [stateAbbreviation, setStateAbbreviation] = useState<string>("");
 
   const arrayTotalItems = shoppingCartItems.map((coffee) => coffee.count);
   const initialValue = 0;
@@ -25,45 +25,19 @@ export const Header = () => {
     initialValue
   );
 
-  const stateAbbreviations = {
-    Acre: "AC",
-    Alagoas: "AL",
-    Amapá: "AP",
-    Amazonas: "AM",
-    Bahia: "BA",
-    Ceará: "CE",
-    DistritoFederal: "DF",
-    EspíritoSanto: "ES",
-    Goiás: "GO",
-    Maranhão: "MA",
-    MatoGrosso: "MT",
-    MatoGrossoDoSul: "MS",
-    MinasGerais: "MG",
-    Pará: "PA",
-    Paraíba: "PB",
-    Paraná: "PR",
-    Pernambuco: "PE",
-    Piauí: "PI",
-    RioDeJaneiro: "RJ",
-    RioGrandeDoNorte: "RN",
-    RioGrandeDoSul: "RS",
-    Rondônia: "RO",
-    Roraima: "RR",
-    SantaCatarina: "SC",
-    SãoPaulo: "SP",
-    Sergipe: "SE",
-    Tocantins: "TO",
-  };
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        getCityInfo(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      console.log("Not Available");
+    }
+  }, [])
 
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      getCityInfo(position.coords.latitude, position.coords.longitude);
-    });
-  } else {
-    console.log("Not Available");
-  }
 
-  function getCityInfo(latitude, longitude) {
+
+  function getCityInfo(latitude: number, longitude: number) {
     var geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
 
     fetch(geocodingUrl)
@@ -73,7 +47,37 @@ export const Header = () => {
           var city = data.address.city;
           var state = data.address.state;
 
-          var stateAbbreviation = stateAbbreviations[state] || state;
+          var stateAbbreviationsMap: { [key: string]: string } = {
+            Acre: "AC",
+            Alagoas: "AL",
+            Amapá: "AP",
+            Amazonas: "AM",
+            Bahia: "BA",
+            Ceará: "CE",
+            DistritoFederal: "DF",
+            EspíritoSanto: "ES",
+            Goiás: "GO",
+            Maranhão: "MA",
+            MatoGrosso: "MT",
+            MatoGrossoDoSul: "MS",
+            MinasGerais: "MG",
+            Pará: "PA",
+            Paraíba: "PB",
+            Paraná: "PR",
+            Pernambuco: "PE",
+            Piauí: "PI",
+            RioDeJaneiro: "RJ",
+            RioGrandeDoNorte: "RN",
+            RioGrandeDoSul: "RS",
+            Rondônia: "RO",
+            Roraima: "RR",
+            SantaCatarina: "SC",
+            SãoPaulo: "SP",
+            Sergipe: "SE",
+            Tocantins: "TO",
+          };
+
+          var stateAbbreviation = stateAbbreviationsMap[state] || state;
 
           setCity(city);
           setStateAbbreviation(stateAbbreviation);
