@@ -1,24 +1,20 @@
 import TradicionalExpressoIcon from "../../assets/coffes/TradicionalExpressoIcon.svg";
 import ExpressoAmericano from "../../assets/coffes/ExpressoAmericano.svg";
 import ExpressoCremoso from "../../assets/coffes/ExpressoCremoso.svg";
-import ExpressoGelado from "../../assets/coffes/ExpressoGelado.svg"
-import CafeComLeite from "../../assets/coffes/CafeComLeite.svg"
-import Latte from "../../assets/coffes/Latte.svg"
-import Capuccino from "../../assets/coffes/Capuccino.svg"
-import Macchiato from "../../assets/coffes/Macchiato.svg"
-import Mocaccino from "../../assets/coffes/Mocaccino.svg"
-import ChocolateQuente from "../../assets/coffes/ChocolateQuente.svg"
-import Cubano from "../../assets/coffes/Cubano.svg"
-import Havaiano from "../../assets/coffes/Havaiano.svg"
-import Arabe from "../../assets/coffes/Arabe.svg"
-import Irlandes from "../../assets/coffes/Irlandes.svg"
+import ExpressoGelado from "../../assets/coffes/ExpressoGelado.svg";
+import CafeComLeite from "../../assets/coffes/CafeComLeite.svg";
+import Latte from "../../assets/coffes/Latte.svg";
+import Capuccino from "../../assets/coffes/Capuccino.svg";
+import Macchiato from "../../assets/coffes/Macchiato.svg";
+import Mocaccino from "../../assets/coffes/Mocaccino.svg";
+import ChocolateQuente from "../../assets/coffes/ChocolateQuente.svg";
+import Cubano from "../../assets/coffes/Cubano.svg";
+import Havaiano from "../../assets/coffes/Havaiano.svg";
+import Arabe from "../../assets/coffes/Arabe.svg";
+import Irlandes from "../../assets/coffes/Irlandes.svg";
+import { CoffeeType } from "../../types/Coffee";
 
-
-import { Coffee } from "../../types/Coffee";
-
-
-
-export const coffees: Coffee[] = [
+export const coffees: CoffeeType[] = [
   {
     id: 1,
     image: TradicionalExpressoIcon,

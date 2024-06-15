@@ -14,7 +14,7 @@ import {
   ProductPrice,
   RemoveButton,
 } from "./styles";
-import { coffees } from "../../../../components/Coffees/coffees";
+import { coffees } from "../../../../database/Coffees/coffees";
 import { useAppContext } from "../../../../contexts/ProductsContext";
 
 export const CheckoutCartItems = () => {

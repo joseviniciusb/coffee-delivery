@@ -1,16 +1,18 @@
+import banner from "../../assets/banner.svg";
 import {
   ImageContainer,
   IntroContainer,
   ItemsContainer,
   TitleContainer,
 } from "./styles";
-import banner from "../../assets/banner.svg";
 
-import shoppingCartItems from "../../assets/shoppingCartItems.svg";
-import packaging from "../../assets/packaging.svg";
-import IconTime from "../../assets/Icontime.svg";
 import IconCoffe from "../../assets/Iconcoffe.svg";
-import { Card } from "../../components/Card/Index";
+import IconTime from "../../assets/Icontime.svg";
+import packaging from "../../assets/packaging.svg";
+import shoppingCartItems from "../../assets/shoppingCartItems.svg";
+
+import CardList from "../../components/CardList";
+import { coffees } from "../../database/Coffees/coffees";
 
 export const Home = () => {
   const items = [
@@ -61,7 +63,7 @@ export const Home = () => {
         </ImageContainer>
       </IntroContainer>
 
-      <Card />
+      <CardList coffees={coffees} />
     </>
   );
 };
