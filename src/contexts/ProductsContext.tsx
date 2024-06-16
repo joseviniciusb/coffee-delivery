@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { AppContextType, CartItem } from "./AppContextTypes";
-import { Coffee } from "../types/Coffee";
+import { Coffee } from "../domain/entities/Coffee";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -13,11 +13,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     { coffeeId: number; count: number }[]
   >([]);
 
-  function removeProduct(index: number){
-      const newShoppingCartItems = [...shoppingCartItems];
-      newShoppingCartItems.splice(index, 1);
-      setShoppingCartItems(newShoppingCartItems);
- }
+  function removeProduct(index: number) {
+    const newShoppingCartItems = [...shoppingCartItems];
+    newShoppingCartItems.splice(index, 1);
+    setShoppingCartItems(newShoppingCartItems);
+  }
 
   const handleProduct = (id: number, increment: number) => {
     const updatedCartItems = [...shoppingCartItems];
@@ -45,9 +45,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     setShoppingCartItems(updatedCartItems);
   };
 
-   function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
+  function filterCoffeesById(coffees: Coffee[], shoppingCartItems: CartItem[]) {
     return shoppingCartItems.map(({ coffeeId, count }) => {
-      const coffee = coffees.find((c) => c.id === coffeeId) as Coffee;
+      const coffee = coffees.find(
+        (c) => Number(c.id) === Number(coffeeId)
+      ) as Coffee;
       return {
         ...coffee,
         count,
@@ -68,7 +70,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AppContext.Provider value={{ shoppingCartItems, setShoppingCartItems, handleProduct, removeProduct, filterCoffeesById, sumTotalPrice }}>
+    <AppContext.Provider
+      value={{
+        shoppingCartItems,
+        setShoppingCartItems,
+        handleProduct,
+        removeProduct,
+        filterCoffeesById,
+        sumTotalPrice,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

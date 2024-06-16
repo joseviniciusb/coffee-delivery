@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type BaseInputProps = {
-  $inputError: Boolean;
+  $inputError: boolean;
 };
 
 const BaseInput = styled.input<BaseInputProps>`
