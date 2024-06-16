@@ -35,7 +35,7 @@ const CustomTag = ({ tag }: { tag: TagType }) => {
 };
 
 const CardList: React.FC<CardListProps> = ({ coffees }) => {
-  let BRL = new Intl.NumberFormat("pt-BR", {
+  const BRL = new Intl.NumberFormat("pt-BR", {
     style: "decimal",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

@@ -23,7 +23,7 @@ export const CheckoutCartItems = () => {
 
   const theme = useTheme();
 
-  let BRL = new Intl.NumberFormat("pt-BR", {
+  const BRL = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   });

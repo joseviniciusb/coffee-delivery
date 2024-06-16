@@ -38,16 +38,16 @@ export const Header = () => {
 
 
   function getCityInfo(latitude: number, longitude: number) {
-    var geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+    const geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
 
     fetch(geocodingUrl)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.address) {
-          var city = data.address.city;
-          var state = data.address.state;
+          const city = data.address.city;
+          const state = data.address.state;
 
-          var stateAbbreviationsMap: { [key: string]: string } = {
+          const stateAbbreviationsMap: { [key: string]: string } = {
             Acre: "AC",
             Alagoas: "AL",
             Amapá: "AP",
@@ -77,7 +77,7 @@ export const Header = () => {
             Tocantins: "TO",
           };
 
-          var stateAbbreviation = stateAbbreviationsMap[state] || state;
+          const stateAbbreviation = stateAbbreviationsMap[state] || state;
 
           setCity(city);
           setStateAbbreviation(stateAbbreviation);

@@ -12,7 +12,7 @@ import { useAppContext } from "../../contexts/ProductsContext";
 import { coffees } from "../../database/Coffees/coffees";
 
 export const Card = () => {
-  let BRL = new Intl.NumberFormat("pt-BR", {
+  const BRL = new Intl.NumberFormat("pt-BR", {
     style: "decimal",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

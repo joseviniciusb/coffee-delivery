@@ -1,6 +1,5 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 
-import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
 import IllustrationDeliveryRider from "../../assets/IllustrationDeliveryRider.svg";
@@ -21,7 +20,8 @@ export const OrderConfirmation = () => {
 
   console.log(location.state);
 
-  const { cep, rua, numero, complemento, bairro, cidade, estado } = location.state.formData;
+  const { cep, rua, numero, complemento, bairro, cidade, estado } =
+    location.state.formData;
   let { selectedMethod } = location.state;
 
   console.log(cep, rua, numero, complemento, bairro, cidade, estado);
@@ -52,7 +52,9 @@ export const OrderConfirmation = () => {
                     {rua}, {numero}
                   </span>
                 </InfoText>
-                <InfoText>{bairro} - {cidade}, {estado}</InfoText>
+                <InfoText>
+                  {bairro} - {cidade}, {estado}
+                </InfoText>
               </div>
             </InfoTextContainer>
 
