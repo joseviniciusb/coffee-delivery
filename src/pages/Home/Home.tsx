@@ -12,7 +12,7 @@ import packaging from "../../assets/packaging.svg";
 import shoppingCartItems from "../../assets/shoppingCartItems.svg";
 
 import CardList from "../../components/CardList";
-import { coffees } from "../../database/Coffees/coffees";
+import { coffees } from "../../data/datasources/coffees";
 
 export const Home = () => {
   const items = [

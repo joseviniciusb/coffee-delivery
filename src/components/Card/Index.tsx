@@ -9,7 +9,7 @@ import {
 } from "./styles";
 import { NavLink } from "react-router-dom";
 import { useAppContext } from "../../contexts/ProductsContext";
-import { coffees } from "../../database/Coffees/coffees";
+import { coffees } from "../../data/datasources/coffees";
 
 export const Card = () => {
   const BRL = new Intl.NumberFormat("pt-BR", {

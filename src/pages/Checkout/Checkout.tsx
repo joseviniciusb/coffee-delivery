@@ -32,7 +32,7 @@ import {
 } from "./components/AddressForm/styles";
 import { useState } from "react";
 import { useAppContext } from "../../contexts/ProductsContext";
-import { coffees } from "../../database/Coffees/coffees";
+import { coffees } from "../../data/datasources/coffees";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PaymentMethods } from "../../types/PaymentMethods";
