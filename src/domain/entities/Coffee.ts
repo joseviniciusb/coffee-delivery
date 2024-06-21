@@ -1,3 +1,5 @@
+import { CoffeeModel } from "../../data/model/CoffeeModel";
+
 export class Coffee {
   id: string;
   name: string;
@@ -51,5 +53,20 @@ export class Coffee {
 
   getTag(): string {
     return this.tag;
+  }
+
+  static fromModel(model: CoffeeModel): Coffee {
+    const entity = new Coffee();
+    entity.id = model.id;
+
+    entity.description = "";
+    entity.price = 1;
+    entity.count = 1;
+    entity.image = "image";
+    entity.tag = "tag";
+
+    console.log(entity);
+
+    return entity;
   }
 }
